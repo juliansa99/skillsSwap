@@ -276,11 +276,24 @@
     document.getElementById('btn-logout').style.display = 'none'
     document.getElementById('nav-email').textContent = ''
   }
-  function showProfile() {
+ async function showProfile() {
     document.getElementById('page-login').classList.remove('active')
     document.getElementById('page-profile').classList.add('active')
     document.getElementById('btn-logout').style.display = ''
     document.getElementById('nav-email').textContent = currentUser.email
+
+    const { data } = await db.from('perfiles').select('id').eq('email', currentUser.email).single()
+    if (!data) {
+      await db.from('perfiles').insert({
+        email: currentUser.email,
+        nombre: currentUser.user_metadata?.full_name?.split(' ')[0] || '',
+        apellido: currentUser.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
+        foto_url: currentUser.user_metadata?.avatar_url || '',
+        habilidad_ofrezco: '',
+        habilidad_busco: ''
+      })
+    }
+
     loadProfile()
   }
   function setLoginTab(tab, btn) {
