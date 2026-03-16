@@ -30,10 +30,11 @@
   .btn-green:disabled { opacity: .6; cursor: not-allowed; }
   .page { display: none; }
   .page.active { display: block; }
+
   .login-wrap { min-height: calc(100vh - 60px); display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
   .login-card { background: var(--white); border-radius: 24px; border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 420px; }
   .login-card h1 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; }
-  .login-card p { font-size: 14px; color: var(--ink-3); margin-bottom: 32px; }
+  .login-card > p { font-size: 14px; color: var(--ink-3); margin-bottom: 32px; }
   .login-tabs { display: flex; background: var(--surface); border-radius: 12px; padding: 4px; margin-bottom: 24px; gap: 4px; }
   .login-tab { flex: 1; padding: 8px; text-align: center; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; background: none; color: var(--ink-3); transition: all .2s; font-family: 'DM Sans', sans-serif; }
   .login-tab.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
@@ -48,70 +49,110 @@
   .msg-error { color: var(--red); font-size: 13px; padding: 10px 14px; background: var(--red-light); border-radius: 8px; margin-bottom: 12px; display: none; }
   .msg-success { color: var(--green-dark); font-size: 13px; padding: 10px 14px; background: var(--green-light); border-radius: 8px; margin-bottom: 12px; display: none; }
   .form-divider { text-align: center; font-size: 12px; color: var(--ink-3); margin: 16px 0; }
-  .profile-layout { max-width: 900px; margin: 0 auto; padding: 32px 20px; display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; }
-  .profile-sidebar { display: flex; flex-direction: column; gap: 16px; }
-  .profile-main { display: flex; flex-direction: column; gap: 20px; }
-  .card { background: var(--white); border-radius: 20px; border: 1px solid var(--border); padding: 24px; }
-  .card h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 16px; color: var(--ink); display: flex; align-items: center; justify-content: space-between; }
-  .avatar-section { text-align: center; padding-bottom: 8px; }
-  .avatar-wrap { width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 12px; position: relative; cursor: pointer; }
-  .avatar-img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green-light); }
-  .avatar-placeholder { width: 96px; height: 96px; border-radius: 50%; background: var(--green-light); border: 3px solid var(--green-light); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; color: var(--green-dark); }
-  .avatar-overlay { position: absolute; inset: 0; border-radius: 50%; background: rgba(0,0,0,.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; font-size: 20px; }
+
+  .profile-tabs { display: flex; gap: 4px; padding: 20px 32px 0; max-width: 960px; margin: 0 auto; }
+  .profile-tab { padding: 10px 20px; border-radius: 12px 12px 0 0; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); border-bottom: none; background: var(--surface); color: var(--ink-3); transition: all .2s; font-family: 'DM Sans', sans-serif; }
+  .profile-tab.active { background: var(--white); color: var(--ink); }
+  .match-badge { background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 100px; margin-left: 6px; }
+
+  .profile-layout { max-width: 960px; margin: 0 auto; padding: 0 32px 80px; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 20px 20px; }
+  .tab-content { display: none; padding-top: 28px; }
+  .tab-content.active { display: block; }
+  .two-col { display: grid; grid-template-columns: 260px 1fr; gap: 24px; align-items: start; }
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .main-col { display: flex; flex-direction: column; gap: 20px; }
+  .card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); padding: 20px; }
+  .card h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 14px; color: var(--ink); }
+
+  .avatar-section { text-align: center; padding-bottom: 4px; }
+  .avatar-wrap { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 10px; position: relative; cursor: pointer; }
+  .avatar-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green-light); }
+  .avatar-placeholder { width: 88px; height: 88px; border-radius: 50%; background: var(--green-light); border: 3px solid var(--green-light); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: var(--green-dark); }
+  .avatar-overlay { position: absolute; inset: 0; border-radius: 50%; background: rgba(0,0,0,.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; font-size: 18px; }
   .avatar-wrap:hover .avatar-overlay { opacity: 1; }
-  .profile-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
-  .profile-city { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
-  .profile-stats { display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .profile-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+  .profile-city { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .profile-stats { display: flex; gap: 12px; justify-content: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
   .pstat { text-align: center; }
-  .pstat-num { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); }
-  .pstat-lbl { font-size: 11px; color: var(--ink-3); }
-  .skills-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; min-height: 10px; }
-  .skill-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 100px; font-size: 13px; }
+  .pstat-num { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); }
+  .pstat-lbl { font-size: 10px; color: var(--ink-3); }
+
+  .skills-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; min-height: 8px; }
+  .skill-tag { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 100px; font-size: 12px; }
   .skill-tag-offer { background: var(--green-light); color: var(--green-dark); }
   .skill-tag-want { background: var(--purple-light); color: var(--purple); }
-  .skill-remove { background: none; border: none; cursor: pointer; font-size: 14px; color: inherit; opacity: .6; padding: 0; line-height: 1; }
+  .skill-remove { background: none; border: none; cursor: pointer; font-size: 13px; color: inherit; opacity: .6; padding: 0; line-height: 1; }
   .skill-remove:hover { opacity: 1; }
-  .skill-input-row { display: flex; gap: 8px; margin-top: 10px; }
-  .skill-input-row input { flex: 1; padding: 8px 12px; border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color .2s; }
+  .skill-input-row { display: flex; gap: 8px; margin-top: 8px; }
+  .skill-input-row input { flex: 1; padding: 7px 11px; border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color .2s; }
   .skill-input-row input:focus { border-color: var(--green); }
-  .btn-add { padding: 8px 14px; border-radius: 8px; border: none; background: var(--green); color: var(--white); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
+  .btn-add { padding: 7px 13px; border-radius: 8px; border: none; background: var(--green); color: var(--white); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
   .btn-add:hover { background: var(--green-dark); }
-  .btn-add-purple { padding: 8px 14px; border-radius: 8px; border: none; background: var(--purple); color: var(--white); font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
+  .btn-add-purple { padding: 7px 13px; border-radius: 8px; border: none; background: var(--purple); color: var(--white); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
   .btn-add-purple:hover { background: #3C3489; }
-  .cat-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-  .cat-pill { padding: 7px 14px; border-radius: 100px; font-size: 13px; border: 1.5px solid var(--border-strong); background: var(--white); color: var(--ink-2); cursor: pointer; transition: all .15s; }
+
+  .cat-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+  .cat-pill { padding: 6px 12px; border-radius: 100px; font-size: 12px; border: 1.5px solid var(--border-strong); background: var(--white); color: var(--ink-2); cursor: pointer; transition: all .15s; }
   .cat-pill:hover { border-color: var(--green); color: var(--green-dark); }
   .cat-pill.selected-offer { background: var(--green-light); border-color: var(--green); color: var(--green-dark); font-weight: 500; }
   .cat-pill.selected-want { background: var(--purple-light); border-color: var(--purple); color: var(--purple); font-weight: 500; }
-  .cat-pill.disabled { opacity: .4; cursor: not-allowed; pointer-events: none; }
-  .cert-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
-  .cert-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
-  .cert-icon { font-size: 20px; flex-shrink: 0; }
+  .cat-pill.disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
+
+  .cert-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .cert-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); }
+  .cert-icon { font-size: 18px; flex-shrink: 0; }
   .cert-info { flex: 1; min-width: 0; }
-  .cert-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cert-name { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cert-size { font-size: 11px; color: var(--ink-3); }
-  .cert-remove { background: none; border: none; cursor: pointer; color: var(--ink-3); font-size: 16px; flex-shrink: 0; }
+  .cert-remove { background: none; border: none; cursor: pointer; color: var(--ink-3); font-size: 15px; flex-shrink: 0; }
   .cert-remove:hover { color: var(--red); }
-  .upload-area { border: 2px dashed var(--border-strong); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: all .2s; background: var(--surface); }
+  .upload-area { border: 2px dashed var(--border-strong); border-radius: 10px; padding: 18px; text-align: center; cursor: pointer; transition: all .2s; background: var(--white); }
   .upload-area:hover { border-color: var(--green); background: var(--green-light); }
-  .upload-area p { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
-  .upload-area span { font-size: 24px; }
-  .avail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .avail-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; border: 1.5px solid var(--border); cursor: pointer; transition: all .2s; font-size: 13px; }
+  .upload-area p { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+  .upload-area span { font-size: 22px; }
+
+  .avail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .avail-item { display: flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 8px; border: 1.5px solid var(--border); cursor: pointer; transition: all .2s; font-size: 12px; }
   .avail-item.selected { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
-  .avail-check { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; transition: all .2s; }
+  .avail-check { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; transition: all .2s; }
   .avail-item.selected .avail-check { background: var(--green); border-color: var(--green); }
+
   .save-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; background: var(--white); border-top: 1px solid var(--border); padding: 14px 32px; display: none; align-items: center; justify-content: space-between; box-shadow: 0 -4px 20px rgba(0,0,0,.06); }
   .save-bar.visible { display: flex; }
-  .save-bar p { font-size: 14px; color: var(--ink-3); }
+  .save-bar p { font-size: 13px; color: var(--ink-3); }
+
+  .matches-grid { display: flex; flex-direction: column; gap: 16px; }
+  .match-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; gap: 16px; align-items: flex-start; transition: box-shadow .2s; }
+  .match-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+  .match-av { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; background: var(--green-light); color: var(--green-dark); }
+  .match-info { flex: 1; }
+  .match-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .match-city { font-size: 12px; color: var(--ink-3); margin-bottom: 8px; }
+  .match-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+  .match-bio { font-size: 13px; color: var(--ink-3); line-height: 1.5; margin-bottom: 10px; }
+  .match-contact { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-contact { padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all .2s; }
+  .btn-contact-green { background: var(--green); color: var(--white); border: none; }
+  .btn-contact-green:hover { background: var(--green-dark); }
+  .btn-contact-outline { background: none; color: var(--ink); border: 1.5px solid var(--border-strong); }
+  .btn-contact-outline:hover { border-color: var(--ink); }
+  .empty-matches { text-align: center; padding: 60px 20px; color: var(--ink-3); }
+  .empty-matches .emoji { font-size: 48px; margin-bottom: 16px; }
+  .empty-matches h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+  .empty-matches p { font-size: 14px; max-width: 340px; margin: 0 auto; }
+
   @media (max-width: 700px) {
-    .profile-layout { grid-template-columns: 1fr; padding: 16px; }
+    .two-col { grid-template-columns: 1fr; }
+    .profile-tabs { padding: 16px 16px 0; }
+    .profile-layout { padding: 0 16px 80px; }
+    nav { padding: 0 16px; }
+    .save-bar { padding: 12px 16px; }
     .login-card { padding: 32px 20px; }
-    .save-bar { padding: 14px 16px; }
   }
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo">skill<span>swap</span></a>
   <div class="nav-right">
@@ -119,6 +160,7 @@
     <button class="btn-sm" id="btn-logout" style="display:none" onclick="logout()">Cerrar sesión</button>
   </div>
 </nav>
+
 <div class="page active" id="page-login">
   <div class="login-wrap">
     <div class="login-card">
@@ -161,91 +203,111 @@
     </div>
   </div>
 </div>
+
 <div class="page" id="page-profile">
+  <div class="profile-tabs">
+    <button class="profile-tab active" onclick="switchTab('mi-perfil', this)">Mi perfil</button>
+    <button class="profile-tab" id="tab-matches-btn" onclick="switchTab('mis-matches', this)">Mis matches <span class="match-badge" id="match-count" style="display:none">0</span></button>
+  </div>
   <div class="profile-layout">
-    <div class="profile-sidebar">
-      <div class="card">
-        <div class="avatar-section">
-          <div class="avatar-wrap" onclick="document.getElementById('avatar-input').click()">
-            <div class="avatar-placeholder" id="avatar-placeholder">?</div>
-            <img class="avatar-img" id="avatar-img" style="display:none" src="" alt="foto">
-            <div class="avatar-overlay">📷</div>
+
+    <div class="tab-content active" id="tab-mi-perfil">
+      <div class="two-col">
+        <div class="sidebar">
+          <div class="card">
+            <div class="avatar-section">
+              <div class="avatar-wrap" onclick="document.getElementById('avatar-input').click()">
+                <div class="avatar-placeholder" id="avatar-placeholder">?</div>
+                <img class="avatar-img" id="avatar-img" style="display:none" src="" alt="foto">
+                <div class="avatar-overlay">📷</div>
+              </div>
+              <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatar(this)">
+              <div class="profile-name" id="display-name">Tu nombre</div>
+              <div class="profile-city" id="display-city">—</div>
+            </div>
+            <div class="profile-stats">
+              <div class="pstat"><div class="pstat-num" id="stat-habilidades">0</div><div class="pstat-lbl">habilidades</div></div>
+              <div class="pstat"><div class="pstat-num" id="stat-matches">0</div><div class="pstat-lbl">matches</div></div>
+            </div>
           </div>
-          <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatar(this)">
-          <div class="profile-name" id="display-name">Tu nombre</div>
-          <div class="profile-city" id="display-city">—</div>
+          <div class="card">
+            <h3>Disponibilidad</h3>
+            <div class="avail-grid">
+              <div class="avail-item" onclick="toggleAvail(this)" data-val="Mañanas"><div class="avail-check"></div> Mañanas</div>
+              <div class="avail-item" onclick="toggleAvail(this)" data-val="Tardes"><div class="avail-check"></div> Tardes</div>
+              <div class="avail-item" onclick="toggleAvail(this)" data-val="Noches"><div class="avail-check"></div> Noches</div>
+              <div class="avail-item" onclick="toggleAvail(this)" data-val="Fines de semana"><div class="avail-check"></div> Fines de semana</div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Redes y contacto</h3>
+            <div class="form-group"><label>LinkedIn</label><input id="inp-linkedin" type="url" placeholder="linkedin.com/in/tuperfil" oninput="markDirty()"></div>
+            <div class="form-group" style="margin-bottom:0"><label>Instagram</label><input id="inp-instagram" type="text" placeholder="@tuusuario" oninput="markDirty()"></div>
+          </div>
         </div>
-        <div class="profile-stats">
-          <div class="pstat"><div class="pstat-num" id="stat-intercambios">0</div><div class="pstat-lbl">intercambios</div></div>
-          <div class="pstat"><div class="pstat-num" id="stat-habilidades">0</div><div class="pstat-lbl">habilidades</div></div>
-          <div class="pstat"><div class="pstat-num" id="stat-matches">0</div><div class="pstat-lbl">matches</div></div>
+        <div class="main-col">
+          <div class="card">
+            <h3>Información personal</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="form-group"><label>Nombre</label><input id="inp-nombre" type="text" placeholder="María" oninput="markDirty()"></div>
+              <div class="form-group"><label>Apellido</label><input id="inp-apellido" type="text" placeholder="García" oninput="markDirty()"></div>
+            </div>
+            <div class="form-group">
+              <label>Ciudad</label>
+              <select id="inp-ciudad" onchange="markDirty()">
+                <option>Buenos Aires</option><option>Córdoba</option><option>Rosario</option>
+                <option>Mendoza</option><option>La Plata</option><option>Otra ciudad</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label>Bio — contá quién sos y qué te apasiona</label>
+              <textarea id="inp-bio" placeholder="Ej: Soy diseñadora UX con 5 años de experiencia..." oninput="markDirty()"></textarea>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Lo que ofrezco</h3>
+            <div class="skills-list" id="skills-ofrezco"></div>
+            <p style="font-size:11px;color:var(--ink-3);margin-bottom:8px">Seleccioná hasta 5 categorías:</p>
+            <div class="cat-grid" id="cat-grid-ofrezco"></div>
+            <div class="skill-input-row">
+              <input id="inp-skill-ofrezco" type="text" placeholder="O escribí una habilidad específica...">
+              <button class="btn-add" onclick="addSkill('ofrezco')">+ Agregar</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Lo que busco aprender</h3>
+            <div class="skills-list" id="skills-busco"></div>
+            <p style="font-size:11px;color:var(--ink-3);margin-bottom:8px">Seleccioná hasta 5 categorías:</p>
+            <div class="cat-grid" id="cat-grid-busco"></div>
+            <div class="skill-input-row">
+              <input id="inp-skill-busco" type="text" placeholder="O escribí lo que querés aprender...">
+              <button class="btn-add-purple" onclick="addSkill('busco')">+ Agregar</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Títulos y certificados</h3>
+            <div class="cert-list" id="cert-list"></div>
+            <div class="upload-area" onclick="document.getElementById('cert-input').click()">
+              <span>📎</span>
+              <p>Hacé click para subir un certificado o título</p>
+              <p style="font-size:11px;margin-top:3px">PDF, JPG o PNG — máx. 5MB</p>
+            </div>
+            <input type="file" id="cert-input" accept=".pdf,.jpg,.jpeg,.png" multiple style="display:none" onchange="handleCerts(this)">
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <h3>Disponibilidad</h3>
-        <div class="avail-grid">
-          <div class="avail-item" onclick="toggleAvail(this)" data-val="Mañanas"><div class="avail-check"></div> Mañanas</div>
-          <div class="avail-item" onclick="toggleAvail(this)" data-val="Tardes"><div class="avail-check"></div> Tardes</div>
-          <div class="avail-item" onclick="toggleAvail(this)" data-val="Noches"><div class="avail-check"></div> Noches</div>
-          <div class="avail-item" onclick="toggleAvail(this)" data-val="Fines de semana"><div class="avail-check"></div> Fines de semana</div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Redes y contacto</h3>
-        <div class="form-group"><label>LinkedIn</label><input id="inp-linkedin" type="url" placeholder="linkedin.com/in/tuperfil" oninput="markDirty()"></div>
-        <div class="form-group" style="margin-bottom:0"><label>Instagram</label><input id="inp-instagram" type="text" placeholder="@tuusuario" oninput="markDirty()"></div>
-      </div>
-    </div>
-    <div class="profile-main">
-      <div class="card">
-        <h3>Información personal</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div class="form-group"><label>Nombre</label><input id="inp-nombre" type="text" placeholder="María" oninput="markDirty()"></div>
-          <div class="form-group"><label>Apellido</label><input id="inp-apellido" type="text" placeholder="García" oninput="markDirty()"></div>
-        </div>
-        <div class="form-group">
-          <label>Ciudad</label>
-          <select id="inp-ciudad" onchange="markDirty()">
-            <option>Buenos Aires</option><option>Córdoba</option><option>Rosario</option>
-            <option>Mendoza</option><option>La Plata</option><option>Otra ciudad</option>
-          </select>
-        </div>
-        <div class="form-group" style="margin-bottom:0">
-          <label>Bio — contá quién sos y qué te apasiona</label>
-          <textarea id="inp-bio" placeholder="Ej: Soy diseñadora UX con 5 años de experiencia..." oninput="markDirty()"></textarea>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Lo que ofrezco</h3>
-        <div class="skills-list" id="skills-ofrezco"></div>
-        <p style="font-size:12px;color:var(--ink-3);margin-bottom:10px">Seleccioná hasta 5 categorías:</p>
-        <div class="cat-grid" id="cat-grid-ofrezco"></div>
-        <div class="skill-input-row">
-          <input id="inp-skill-ofrezco" type="text" placeholder="O escribí una habilidad específica...">
-          <button class="btn-add" onclick="addSkill('ofrezco')">+ Agregar</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Lo que busco aprender</h3>
-        <div class="skills-list" id="skills-busco"></div>
-        <p style="font-size:12px;color:var(--ink-3);margin-bottom:10px">Seleccioná hasta 5 categorías:</p>
-        <div class="cat-grid" id="cat-grid-busco"></div>
-        <div class="skill-input-row">
-          <input id="inp-skill-busco" type="text" placeholder="O escribí lo que querés aprender...">
-          <button class="btn-add-purple" onclick="addSkill('busco')">+ Agregar</button>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Títulos y certificados</h3>
-        <div class="cert-list" id="cert-list"></div>
-        <div class="upload-area" onclick="document.getElementById('cert-input').click()">
-          <span>📎</span>
-          <p>Hacé click para subir un certificado o título</p>
-          <p style="font-size:11px;margin-top:4px">PDF, JPG o PNG — máx. 5MB</p>
-        </div>
-        <input type="file" id="cert-input" accept=".pdf,.jpg,.jpeg,.png" multiple style="display:none" onchange="handleCerts(this)">
       </div>
     </div>
+
+    <div class="tab-content" id="tab-mis-matches">
+      <div class="matches-grid" id="matches-grid">
+        <div class="empty-matches">
+          <div class="emoji">🤝</div>
+          <h3>Todavía no tenés matches</h3>
+          <p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="save-bar" id="save-bar">
     <p>Tenés cambios sin guardar</p>
@@ -255,6 +317,7 @@
     </div>
   </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const SUPABASE_URL = 'https://xkwjxuacgxdvgdffcrmt.supabase.co'
@@ -271,6 +334,14 @@
     '💰 Finanzas','⚖️ Derecho','🏥 Salud','🧪 Ciencias','🎭 Teatro',
     '🖌️ Ilustración','🔧 Electricidad','🚗 Mecánica','📚 Tutorías','🐾 Mascotas'
   ]
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'))
+    document.querySelectorAll('.profile-tab').forEach(b => b.classList.remove('active'))
+    document.getElementById('tab-' + tab).classList.add('active')
+    btn.classList.add('active')
+    if (tab === 'mis-matches') loadMatches()
+  }
 
   async function init() {
     const { data: { session } } = await db.auth.getSession()
@@ -295,13 +366,13 @@
     document.getElementById('nav-email').textContent = currentUser.email
     const { data } = await db.from('perfiles').select('id').eq('email', currentUser.email).single()
     if (!data) {
-      await db.from('perfiles').insert({
+      await db.from('perfiles').upsert({
         email: currentUser.email,
         nombre: currentUser.user_metadata?.full_name?.split(' ')[0] || '',
         apellido: currentUser.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
         foto_url: currentUser.user_metadata?.avatar_url || '',
         habilidad_ofrezco: '', habilidad_busco: ''
-      })
+      }, { onConflict: 'email' })
     }
     loadProfile()
   }
@@ -350,7 +421,7 @@
     const { error } = await db.auth.signUp({ email, password, options: { data: { nombre, apellido, ciudad } } })
     btn.textContent = 'Crear cuenta →'; btn.disabled = false
     if (error) { errDiv.textContent = error.message; errDiv.style.display = 'block'; return }
-    await db.from('perfiles').insert({ nombre, apellido, email, ciudad, habilidad_ofrezco: '', habilidad_busco: '' })
+    await db.from('perfiles').upsert({ nombre, apellido, email, ciudad, habilidad_ofrezco: '', habilidad_busco: '' }, { onConflict: 'email' })
     sucDiv.textContent = 'Cuenta creada. Revisá tu email para confirmarla.'
     sucDiv.style.display = 'block'
   }
@@ -360,16 +431,7 @@
   async function loadProfile() {
     if (!currentUser) return
     const { data } = await db.from('perfiles').select('*').eq('email', currentUser.email).single()
-    if (!data) {
-      await db.from('perfiles').insert({
-        email: currentUser.email,
-        nombre: currentUser.user_metadata?.full_name?.split(' ')[0] || '',
-        apellido: currentUser.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
-        foto_url: currentUser.user_metadata?.avatar_url || '',
-        habilidad_ofrezco: '', habilidad_busco: ''
-      })
-      return loadProfile()
-    }
+    if (!data) return
     document.getElementById('inp-nombre').value = data.nombre || ''
     document.getElementById('inp-apellido').value = data.apellido || ''
     document.getElementById('inp-bio').value = data.bio || ''
@@ -397,6 +459,7 @@
     renderSkills(); renderCerts(); renderAvailability(); initCatGrids()
     isDirty = false
     document.getElementById('save-bar').classList.remove('visible')
+    loadMatchCount()
   }
 
   async function saveProfile() {
@@ -428,6 +491,43 @@
 
   function markDirty() { isDirty = true; document.getElementById('save-bar').classList.add('visible') }
 
+  async function loadMatchCount() {
+    const { data } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
+    if (!data) return
+    const matches = data.matches_notificados ? JSON.parse(data.matches_notificados) : []
+    const count = matches.length
+    document.getElementById('stat-matches').textContent = count
+    const badge = document.getElementById('match-count')
+    if (count > 0) { badge.textContent = count; badge.style.display = ''; }
+    else { badge.style.display = 'none'; }
+  }
+
+  async function loadMatches() {
+    const { data: yo } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
+    if (!yo) return
+    const matchEmails = yo.matches_notificados ? JSON.parse(yo.matches_notificados) : []
+    const grid = document.getElementById('matches-grid')
+    if (matchEmails.length === 0) {
+      grid.innerHTML = '<div class="empty-matches"><div class="emoji">🤝</div><h3>Todavía no tenés matches</h3><p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p></div>'
+      return
+    }
+    const { data: matchPerfiles } = await db.from('perfiles').select('*').in('email', matchEmails)
+    if (!matchPerfiles || matchPerfiles.length === 0) return
+    grid.innerHTML = matchPerfiles.map(m => {
+      const initials = ((m.nombre || '?')[0] + (m.apellido || '')[0]).toUpperCase()
+      const skillsO = m.skills_ofrezco ? JSON.parse(m.skills_ofrezco) : (m.habilidad_ofrezco ? [m.habilidad_ofrezco] : [])
+      const skillsB = m.skills_busco ? JSON.parse(m.skills_busco) : (m.habilidad_busco ? [m.habilidad_busco] : [])
+      const tagsO = skillsO.map(s => '<span class="skill-tag skill-tag-offer">' + s + '</span>').join('')
+      const tagsB = skillsB.map(s => '<span class="skill-tag skill-tag-want">' + s + '</span>').join('')
+      const avHtml = m.foto_url
+        ? '<img src="' + m.foto_url + '" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">'
+        : '<div class="match-av">' + initials + '</div>'
+      const linkedin = m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : ''
+      const instagram = m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : ''
+      return '<div class="match-card">' + avHtml + '<div class="match-info"><div class="match-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div><div class="match-city">' + (m.ciudad||'') + '</div>' + (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') + '<div class="match-tags">' + tagsO + tagsB + '</div><div class="match-contact"><a href="mailto:' + m.email + '" class="btn-contact btn-contact-green">✉️ Escribirle</a>' + linkedin + instagram + '</div></div></div>'
+    }).join('')
+  }
+
   function initCatGrids() {
     renderCatGrid('cat-grid-ofrezco', 'ofrezco')
     renderCatGrid('cat-grid-busco', 'busco')
@@ -437,10 +537,9 @@
     const arr = type === 'ofrezco' ? skillsOfrezco : skillsBusco
     const selClass = type === 'ofrezco' ? 'selected-offer' : 'selected-want'
     document.getElementById(containerId).innerHTML = CATEGORIAS.map(c => {
-      const label = c.split(' ').slice(1).join(' ')
       const isSelected = arr.includes(c)
       const isDisabled = !isSelected && arr.length >= 5
-      return `<div class="cat-pill ${isSelected ? selClass : ''} ${isDisabled ? 'disabled' : ''}" onclick="toggleCat('${type}','${c}')">${c}</div>`
+      return '<div class="cat-pill ' + (isSelected ? selClass : '') + ' ' + (isDisabled ? 'disabled' : '') + '" onclick="toggleCat(\'' + type + '\',\'' + c + '\')">' + c + '</div>'
     }).join('')
   }
 
@@ -454,10 +553,7 @@
       if (type === 'ofrezco') skillsOfrezco.push(label)
       else skillsBusco.push(label)
     }
-    renderSkills()
-    renderCatGrid('cat-grid-ofrezco', 'ofrezco')
-    renderCatGrid('cat-grid-busco', 'busco')
-    markDirty()
+    renderSkills(); renderCatGrid('cat-grid-ofrezco', 'ofrezco'); renderCatGrid('cat-grid-busco', 'busco'); markDirty()
   }
 
   function addSkill(type) {
@@ -479,7 +575,7 @@
   function renderSkills() {
     const render = (arr, id, type, cls) => {
       document.getElementById(id).innerHTML = arr.map(s =>
-        `<span class="skill-tag ${cls}">${s}<button class="skill-remove" onclick="removeSkill('${type}','${s}')">×</button></span>`
+        '<span class="skill-tag ' + cls + '">' + s + '<button class="skill-remove" onclick="removeSkill(\'' + type + '\',\'' + s + '\')">×</button></span>'
       ).join('')
     }
     render(skillsOfrezco, 'skills-ofrezco', 'ofrezco', 'skill-tag-offer')
@@ -498,7 +594,7 @@
 
   function renderCerts() {
     document.getElementById('cert-list').innerHTML = certs.map(c =>
-      `<div class="cert-item"><span class="cert-icon">${c.icon}</span><div class="cert-info"><div class="cert-name">${c.name}</div><div class="cert-size">${c.size}</div></div><button class="cert-remove" onclick="removeCert('${c.name}')">×</button></div>`
+      '<div class="cert-item"><span class="cert-icon">' + c.icon + '</span><div class="cert-info"><div class="cert-name">' + c.name + '</div><div class="cert-size">' + c.size + '</div></div><button class="cert-remove" onclick="removeCert(\'' + c.name + '\')">×</button></div>'
     ).join('')
   }
 
