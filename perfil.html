@@ -155,8 +155,10 @@
   .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
   .empty-state p { font-size: 14px; max-width: 340px; margin: 0 auto; }
 
-  .chat-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; height: calc(100vh - 180px); min-height: 500px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-  .chat-sidebar { border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
+.chat-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; height: calc(100vh - 200px); min-height: 500px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.chat-main { display: flex; flex-direction: column; background: var(--white); min-height: 0; overflow: hidden; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.chat-input-row { flex-shrink: 0; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-end; }  .chat-sidebar { border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
   .chat-sidebar-title { padding: 16px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-3); border-bottom: 1px solid var(--border); }
   .chat-contact { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; transition: background .15s; border-bottom: 1px solid var(--border); }
   .chat-contact:hover { background: var(--white); }
@@ -323,7 +325,6 @@
     <button class="profile-tab active" id="tab-btn-mi-perfil" onclick="switchTab('mi-perfil', this)">Mi perfil</button>
     <button class="profile-tab" id="tab-btn-mis-matches" onclick="switchTab('mis-matches', this)">Mis matches <span class="notif-badge" id="match-count" style="display:none">0</span></button>
     <button class="profile-tab" id="tab-btn-mensajes" onclick="switchTab('mensajes', this)">Mensajes <span class="notif-badge" id="msg-count" style="display:none">0</span></button>
-    <button class="profile-tab" id="tab-btn-intercambios" onclick="switchTab('intercambios', this)">Intercambios</button>
     <button class="profile-tab" id="tab-btn-resenas" onclick="switchTab('resenas', this)">Reseñas</button>
   </div>
   <div class="profile-layout">
@@ -443,11 +444,6 @@
       </div>
     </div>
 
-    <div class="tab-content" id="tab-intercambios">
-      <div id="intercambios-container">
-        <div class="empty-state"><div class="emoji">🔄</div><h3>No tenés intercambios activos</h3><p>Cuando acordés un intercambio con un match, va a aparecer acá para que puedas llevar el seguimiento.</p></div>
-      </div>
-    </div>
 
     <div class="tab-content" id="tab-resenas">
       <div id="resenas-container">
