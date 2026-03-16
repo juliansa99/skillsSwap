@@ -53,7 +53,7 @@
   .profile-tabs { display: flex; gap: 4px; padding: 20px 32px 0; max-width: 960px; margin: 0 auto; }
   .profile-tab { padding: 10px 20px; border-radius: 12px 12px 0 0; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); border-bottom: none; background: var(--surface); color: var(--ink-3); transition: all .2s; font-family: 'DM Sans', sans-serif; }
   .profile-tab.active { background: var(--white); color: var(--ink); }
-  .match-badge { background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 100px; margin-left: 6px; }
+  .notif-badge { background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 100px; margin-left: 6px; }
 
   .profile-layout { max-width: 960px; margin: 0 auto; padding: 0 32px 80px; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 20px 20px; }
   .tab-content { display: none; padding-top: 28px; }
@@ -131,15 +131,50 @@
   .match-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
   .match-bio { font-size: 13px; color: var(--ink-3); line-height: 1.5; margin-bottom: 10px; }
   .match-contact { display: flex; gap: 10px; flex-wrap: wrap; }
-  .btn-contact { padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all .2s; }
-  .btn-contact-green { background: var(--green); color: var(--white); border: none; }
+  .btn-contact { padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all .2s; border: none; }
+  .btn-contact-green { background: var(--green); color: var(--white); }
   .btn-contact-green:hover { background: var(--green-dark); }
   .btn-contact-outline { background: none; color: var(--ink); border: 1.5px solid var(--border-strong); }
   .btn-contact-outline:hover { border-color: var(--ink); }
-  .empty-matches { text-align: center; padding: 60px 20px; color: var(--ink-3); }
-  .empty-matches .emoji { font-size: 48px; margin-bottom: 16px; }
-  .empty-matches h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
-  .empty-matches p { font-size: 14px; max-width: 340px; margin: 0 auto; }
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--ink-3); }
+  .empty-state .emoji { font-size: 48px; margin-bottom: 16px; }
+  .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; max-width: 340px; margin: 0 auto; }
+
+  /* MENSAJES */
+  .chat-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; height: calc(100vh - 180px); min-height: 500px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .chat-sidebar { border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
+  .chat-sidebar-title { padding: 16px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-3); border-bottom: 1px solid var(--border); }
+  .chat-contact { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; transition: background .15s; border-bottom: 1px solid var(--border); }
+  .chat-contact:hover { background: var(--white); }
+  .chat-contact.active { background: var(--white); border-left: 3px solid var(--green); }
+  .chat-av { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light); color: var(--green-dark); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .chat-contact-info { flex: 1; min-width: 0; }
+  .chat-contact-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-contact-preview { font-size: 11px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-unread { background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 100px; flex-shrink: 0; }
+  .chat-main { display: flex; flex-direction: column; background: var(--white); }
+  .chat-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .chat-header-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; }
+  .chat-header-status { font-size: 12px; color: var(--green); }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .chat-empty { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--ink-3); }
+  .chat-empty span { font-size: 36px; }
+  .chat-empty p { font-size: 13px; }
+  .msg-bubble { max-width: 70%; padding: 9px 14px; border-radius: 16px; font-size: 14px; line-height: 1.5; }
+  .msg-out { background: var(--green); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .msg-in { background: var(--surface); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg-time { font-size: 10px; opacity: .6; margin-top: 3px; }
+  .msg-out .msg-time { text-align: right; }
+  .chat-input-row { padding: 14px 16px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-end; }
+  .chat-input { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border-strong); border-radius: 20px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--surface); outline: none; resize: none; max-height: 100px; line-height: 1.4; transition: border-color .2s; }
+  .chat-input:focus { border-color: var(--green); background: var(--white); }
+  .btn-send { width: 40px; height: 40px; border-radius: 50%; background: var(--green); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .2s; }
+  .btn-send:hover { background: var(--green-dark); }
+  .btn-send svg { width: 18px; height: 18px; fill: white; }
+  .chat-no-select { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--ink-3); }
+  .chat-no-select span { font-size: 40px; }
+  .chat-no-select p { font-size: 14px; }
 
   @media (max-width: 700px) {
     .two-col { grid-template-columns: 1fr; }
@@ -148,6 +183,9 @@
     nav { padding: 0 16px; }
     .save-bar { padding: 12px 16px; }
     .login-card { padding: 32px 20px; }
+    .chat-layout { grid-template-columns: 1fr; height: auto; }
+    .chat-sidebar { max-height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
+    .chat-main { min-height: 400px; }
   }
 </style>
 </head>
@@ -161,6 +199,7 @@
   </div>
 </nav>
 
+<!-- LOGIN -->
 <div class="page active" id="page-login">
   <div class="login-wrap">
     <div class="login-card">
@@ -204,13 +243,16 @@
   </div>
 </div>
 
+<!-- PERFIL -->
 <div class="page" id="page-profile">
   <div class="profile-tabs">
     <button class="profile-tab active" onclick="switchTab('mi-perfil', this)">Mi perfil</button>
-    <button class="profile-tab" id="tab-matches-btn" onclick="switchTab('mis-matches', this)">Mis matches <span class="match-badge" id="match-count" style="display:none">0</span></button>
+    <button class="profile-tab" onclick="switchTab('mis-matches', this)">Mis matches <span class="notif-badge" id="match-count" style="display:none">0</span></button>
+    <button class="profile-tab" onclick="switchTab('mensajes', this)">Mensajes <span class="notif-badge" id="msg-count" style="display:none">0</span></button>
   </div>
   <div class="profile-layout">
 
+    <!-- TAB MI PERFIL -->
     <div class="tab-content active" id="tab-mi-perfil">
       <div class="two-col">
         <div class="sidebar">
@@ -298,12 +340,25 @@
       </div>
     </div>
 
+    <!-- TAB MIS MATCHES -->
     <div class="tab-content" id="tab-mis-matches">
       <div class="matches-grid" id="matches-grid">
-        <div class="empty-matches">
-          <div class="emoji">🤝</div>
-          <h3>Todavía no tenés matches</h3>
-          <p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p>
+        <div class="empty-state"><div class="emoji">🤝</div><h3>Todavía no tenés matches</h3><p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p></div>
+      </div>
+    </div>
+
+    <!-- TAB MENSAJES -->
+    <div class="tab-content" id="tab-mensajes">
+      <div class="chat-layout">
+        <div class="chat-sidebar">
+          <div class="chat-sidebar-title">Conversaciones</div>
+          <div id="chat-contacts"></div>
+        </div>
+        <div class="chat-main" id="chat-main">
+          <div class="chat-no-select">
+            <span>💬</span>
+            <p>Seleccioná una conversación</p>
+          </div>
         </div>
       </div>
     </div>
@@ -325,6 +380,7 @@
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   let currentUser = null, isDirty = false
   let skillsOfrezco = [], skillsBusco = [], certs = [], availability = []
+  let activeChatEmail = null, chatSub = null
 
   const CATEGORIAS = [
     '🍳 Cocina','🌍 Inglés','🇧🇷 Portugués','🇫🇷 Francés','🇩🇪 Alemán',
@@ -341,6 +397,7 @@
     document.getElementById('tab-' + tab).classList.add('active')
     btn.classList.add('active')
     if (tab === 'mis-matches') loadMatches()
+    if (tab === 'mensajes') loadChatContacts()
   }
 
   async function init() {
@@ -375,6 +432,7 @@
       }, { onConflict: 'email' })
     }
     loadProfile()
+    subscribeToMessages()
   }
 
   function setLoginTab(tab, btn) {
@@ -460,6 +518,7 @@
     isDirty = false
     document.getElementById('save-bar').classList.remove('visible')
     loadMatchCount()
+    loadUnreadCount()
   }
 
   async function saveProfile() {
@@ -495,10 +554,9 @@
     const { data } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
     if (!data) return
     const matches = data.matches_notificados ? JSON.parse(data.matches_notificados) : []
-    const count = matches.length
-    document.getElementById('stat-matches').textContent = count
+    document.getElementById('stat-matches').textContent = matches.length
     const badge = document.getElementById('match-count')
-    if (count > 0) { badge.textContent = count; badge.style.display = ''; }
+    if (matches.length > 0) { badge.textContent = matches.length; badge.style.display = ''; }
     else { badge.style.display = 'none'; }
   }
 
@@ -508,7 +566,7 @@
     const matchEmails = yo.matches_notificados ? JSON.parse(yo.matches_notificados) : []
     const grid = document.getElementById('matches-grid')
     if (matchEmails.length === 0) {
-      grid.innerHTML = '<div class="empty-matches"><div class="emoji">🤝</div><h3>Todavía no tenés matches</h3><p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p></div>'
+      grid.innerHTML = '<div class="empty-state"><div class="emoji">🤝</div><h3>Todavía no tenés matches</h3><p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p></div>'
       return
     }
     const { data: matchPerfiles } = await db.from('perfiles').select('*').in('email', matchEmails)
@@ -524,10 +582,182 @@
         : '<div class="match-av">' + initials + '</div>'
       const linkedin = m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : ''
       const instagram = m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : ''
-      return '<div class="match-card">' + avHtml + '<div class="match-info"><div class="match-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div><div class="match-city">' + (m.ciudad||'') + '</div>' + (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') + '<div class="match-tags">' + tagsO + tagsB + '</div><div class="match-contact"><a href="mailto:' + m.email + '" class="btn-contact btn-contact-green">✉️ Escribirle</a>' + linkedin + instagram + '</div></div></div>'
+      return '<div class="match-card">' + avHtml + '<div class="match-info"><div class="match-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div><div class="match-city">' + (m.ciudad||'') + '</div>' + (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') + '<div class="match-tags">' + tagsO + tagsB + '</div><div class="match-contact"><button onclick="openChat(\'' + m.email + '\',\'' + (m.nombre||'') + ' ' + (m.apellido||'') + '\')" class="btn-contact btn-contact-green">💬 Escribirle</button>' + linkedin + instagram + '</div></div></div>'
     }).join('')
   }
 
+  // ─── CHAT ─────────────────────────────────────────────
+  async function loadUnreadCount() {
+    const { data } = await db.from('mensajes')
+      .select('id')
+      .eq('para_email', currentUser.email)
+      .eq('leido', false)
+    const count = data ? data.length : 0
+    const badge = document.getElementById('msg-count')
+    if (count > 0) { badge.textContent = count; badge.style.display = ''; }
+    else { badge.style.display = 'none'; }
+  }
+
+  async function loadChatContacts() {
+    const { data: yo } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
+    if (!yo) return
+    const matchEmails = yo.matches_notificados ? JSON.parse(yo.matches_notificados) : []
+    const container = document.getElementById('chat-contacts')
+    if (matchEmails.length === 0) {
+      container.innerHTML = '<div style="padding:20px;font-size:13px;color:var(--ink-3);text-align:center">Todavía no tenés matches</div>'
+      return
+    }
+    const { data: perfiles } = await db.from('perfiles').select('*').in('email', matchEmails)
+    if (!perfiles) return
+
+    const { data: mensajes } = await db.from('mensajes')
+      .select('*')
+      .or('de_email.eq.' + currentUser.email + ',para_email.eq.' + currentUser.email)
+      .order('created_at', { ascending: false })
+
+    container.innerHTML = perfiles.map(p => {
+      const initials = ((p.nombre || '?')[0] + (p.apellido || '')[0]).toUpperCase()
+      const ultimoMsg = mensajes ? mensajes.find(m =>
+        (m.de_email === currentUser.email && m.para_email === p.email) ||
+        (m.de_email === p.email && m.para_email === currentUser.email)
+      ) : null
+      const noLeidos = mensajes ? mensajes.filter(m => m.de_email === p.email && m.para_email === currentUser.email && !m.leido).length : 0
+      const avHtml = p.foto_url
+        ? '<img src="' + p.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">'
+        : '<div class="chat-av">' + initials + '</div>'
+      const isActive = activeChatEmail === p.email ? ' active' : ''
+      return '<div class="chat-contact' + isActive + '" onclick="openChat(\'' + p.email + '\',\'' + (p.nombre||'') + ' ' + (p.apellido||'') + '\')">' +
+        avHtml +
+        '<div class="chat-contact-info"><div class="chat-contact-name">' + (p.nombre||'') + ' ' + (p.apellido||'') + '</div>' +
+        '<div class="chat-contact-preview">' + (ultimoMsg ? ultimoMsg.texto.substring(0,30) + (ultimoMsg.texto.length > 30 ? '...' : '') : 'Sin mensajes aún') + '</div></div>' +
+        (noLeidos > 0 ? '<span class="chat-unread">' + noLeidos + '</span>' : '') +
+        '</div>'
+    }).join('')
+  }
+
+  async function openChat(email, nombre) {
+    activeChatEmail = email
+    if (chatSub) { chatSub.unsubscribe(); chatSub = null; }
+    document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'))
+    document.querySelectorAll('.chat-contact').forEach(c => {
+      if (c.getAttribute('onclick') && c.getAttribute('onclick').includes(email)) c.classList.add('active')
+    })
+    const { data: perfil } = await db.from('perfiles').select('foto_url,nombre,apellido').eq('email', email).single()
+    const initials = perfil ? ((perfil.nombre||'?')[0] + (perfil.apellido||'')[0]).toUpperCase() : '?'
+    const avHtml = perfil && perfil.foto_url
+      ? '<img src="' + perfil.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">'
+      : '<div class="chat-av">' + initials + '</div>'
+    document.getElementById('chat-main').innerHTML =
+      '<div class="chat-header">' + avHtml + '<div><div class="chat-header-name">' + nombre + '</div><div class="chat-header-status">● En línea</div></div></div>' +
+      '<div class="chat-messages" id="chat-messages"></div>' +
+      '<div class="chat-input-row"><textarea class="chat-input" id="chat-input" placeholder="Escribí un mensaje..." rows="1" onkeydown="handleChatKey(event)"></textarea>' +
+      '<button class="btn-send" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></button></div>'
+
+    await loadMessages(email)
+
+    await db.from('mensajes').update({ leido: true })
+      .eq('de_email', email)
+      .eq('para_email', currentUser.email)
+      .eq('leido', false)
+
+    loadUnreadCount()
+
+    chatSub = db.channel('chat-' + currentUser.email + '-' + email)
+      .on('postgres_changes', {
+        event: 'INSERT',
+        schema: 'public',
+        table: 'mensajes',
+        filter: 'para_email=eq.' + currentUser.email
+      }, async (payload) => {
+        if (payload.new.de_email === activeChatEmail) {
+          appendMessage(payload.new, false)
+          await db.from('mensajes').update({ leido: true }).eq('id', payload.new.id)
+          loadUnreadCount()
+          scrollChat()
+        } else {
+          loadUnreadCount()
+          loadChatContacts()
+        }
+      })
+      .subscribe()
+  }
+
+  async function loadMessages(email) {
+    const { data } = await db.from('mensajes')
+      .select('*')
+      .or(
+        'and(de_email.eq.' + currentUser.email + ',para_email.eq.' + email + '),' +
+        'and(de_email.eq.' + email + ',para_email.eq.' + currentUser.email + ')'
+      )
+      .order('created_at', { ascending: true })
+
+    const container = document.getElementById('chat-messages')
+    if (!data || data.length === 0) {
+      container.innerHTML = '<div class="chat-empty"><span>👋</span><p>¡Rompé el hielo y mandá el primer mensaje!</p></div>'
+      return
+    }
+    container.innerHTML = ''
+    data.forEach(m => appendMessage(m, m.de_email === currentUser.email))
+    scrollChat()
+  }
+
+  function appendMessage(msg, isMine) {
+    const container = document.getElementById('chat-messages')
+    if (!container) return
+    const emptyDiv = container.querySelector('.chat-empty')
+    if (emptyDiv) emptyDiv.remove()
+    const time = new Date(msg.created_at).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })
+    const div = document.createElement('div')
+    div.style.display = 'flex'
+    div.style.flexDirection = 'column'
+    div.style.alignItems = isMine ? 'flex-end' : 'flex-start'
+    div.innerHTML = '<div class="msg-bubble ' + (isMine ? 'msg-out' : 'msg-in') + '">' + escapeHtml(msg.texto) + '<div class="msg-time">' + time + '</div></div>'
+    container.appendChild(div)
+  }
+
+  function escapeHtml(text) {
+    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')
+  }
+
+  function scrollChat() {
+    const c = document.getElementById('chat-messages')
+    if (c) c.scrollTop = c.scrollHeight
+  }
+
+  function handleChatKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chat-input')
+    if (!input) return
+    const texto = input.value.trim()
+    if (!texto || !activeChatEmail) return
+    input.value = ''
+    const msg = { de_email: currentUser.email, para_email: activeChatEmail, texto, leido: false }
+    appendMessage({ ...msg, created_at: new Date().toISOString() }, true)
+    scrollChat()
+    await db.from('mensajes').insert(msg)
+    loadChatContacts()
+  }
+
+  function subscribeToMessages() {
+    db.channel('all-messages-' + currentUser.email)
+      .on('postgres_changes', {
+        event: 'INSERT',
+        schema: 'public',
+        table: 'mensajes',
+        filter: 'para_email=eq.' + currentUser.email
+      }, () => {
+        loadUnreadCount()
+        if (document.getElementById('tab-mensajes').classList.contains('active')) {
+          loadChatContacts()
+        }
+      })
+      .subscribe()
+  }
+
+  // ─── CATEGORIES ──────────────────────────────────────
   function initCatGrids() {
     renderCatGrid('cat-grid-ofrezco', 'ofrezco')
     renderCatGrid('cat-grid-busco', 'busco')
