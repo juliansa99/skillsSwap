@@ -345,7 +345,17 @@
   async function loadProfile() {
     if (!currentUser) return
     const { data } = await db.from('perfiles').select('*').eq('email', currentUser.email).single()
-    if (!data) return
+    if (!data) {
+  await db.from('perfiles').insert({
+    email: currentUser.email,
+    nombre: currentUser.user_metadata?.full_name?.split(' ')[0] || '',
+    apellido: currentUser.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
+    foto_url: currentUser.user_metadata?.avatar_url || '',
+    habilidad_ofrezco: '',
+    habilidad_busco: ''
+  })
+  return
+}
     document.getElementById('inp-nombre').value = data.nombre || ''
     document.getElementById('inp-apellido').value = data.apellido || ''
     document.getElementById('inp-bio').value = data.bio || ''
