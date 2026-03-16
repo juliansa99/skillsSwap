@@ -187,6 +187,22 @@
     .chat-sidebar { max-height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
     .chat-main { min-height: 400px; }
   }
+  .modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(18,18,15,.6); align-items:center; justify-content:center; backdrop-filter:blur(4px); padding:20px; }
+.modal-overlay.open { display:flex; }
+.modal-box { background:var(--white); border-radius:24px; padding:32px; width:100%; max-width:520px; max-height:85vh; overflow-y:auto; position:relative; animation:modalIn .25s ease; }
+@keyframes modalIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
+.modal-close { position:absolute; top:14px; right:18px; background:none; border:none; font-size:22px; color:var(--ink-3); cursor:pointer; }
+.modal-av { width:72px; height:72px; border-radius:50%; background:var(--green-light); color:var(--green-dark); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:24px; font-weight:700; margin-bottom:12px; }
+.modal-name { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; margin-bottom:2px; }
+.modal-city { font-size:13px; color:var(--ink-3); margin-bottom:16px; }
+.modal-bio { font-size:14px; color:var(--ink-2); line-height:1.65; margin-bottom:20px; padding:14px; background:var(--surface); border-radius:12px; }
+.modal-section { margin-bottom:18px; }
+.modal-section-title { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; }
+.modal-avail { display:flex; flex-wrap:wrap; gap:6px; }
+.modal-avail-pill { padding:5px 12px; border-radius:100px; font-size:12px; background:var(--green-light); color:var(--green-dark); }
+.modal-certs { display:flex; flex-direction:column; gap:6px; }
+.modal-cert { display:flex; align-items:center; gap:8px; font-size:13px; padding:8px 12px; background:var(--surface); border-radius:8px; }
+.modal-links { display:flex; gap:8px; flex-wrap:wrap; }
 </style>
 </head>
 <body>
@@ -400,6 +416,43 @@
     if (tab === 'mensajes') loadChatContacts()
   }
 
+  async function verPerfil(email) {
+  const { data: m } = await db.from('perfiles').select('*').eq('email', email).single()
+  if (!m) return
+  const initials = ((m.nombre||'?')[0] + (m.apellido||'')[0]).toUpperCase()
+  const avHtml = m.foto_url
+    ? '<img src="' + m.foto_url + '" style="width:72px;height:72px;border-radius:50%;object-fit:cover">'
+    : '<div class="modal-av">' + initials + '</div>'
+  const skillsO = m.skills_ofrezco ? JSON.parse(m.skills_ofrezco) : (m.habilidad_ofrezco ? [m.habilidad_ofrezco] : [])
+  const skillsB = m.skills_busco ? JSON.parse(m.skills_busco) : (m.habilidad_busco ? [m.habilidad_busco] : [])
+  const avail = m.disponibilidad ? JSON.parse(m.disponibilidad) : []
+  const certs = m.certificados ? JSON.parse(m.certificados) : []
+
+  const html = '<div class="modal-overlay open" id="perfil-modal" onclick="if(event.target===this)cerrarModal()">' +
+    '<div class="modal-box">' +
+    '<button class="modal-close" onclick="cerrarModal()">×</button>' +
+    avHtml +
+    '<div class="modal-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div>' +
+    '<div class="modal-city">📍 ' + (m.ciudad||'') + '</div>' +
+    (m.bio ? '<div class="modal-bio">' + m.bio + '</div>' : '') +
+    '<div class="modal-section"><div class="modal-section-title">Lo que ofrece</div><div class="skills-list">' + skillsO.map(s => '<span class="skill-tag skill-tag-offer">' + s + '</span>').join('') + '</div></div>' +
+    '<div class="modal-section"><div class="modal-section-title">Lo que busca aprender</div><div class="skills-list">' + skillsB.map(s => '<span class="skill-tag skill-tag-want">' + s + '</span>').join('') + '</div></div>' +
+    (avail.length ? '<div class="modal-section"><div class="modal-section-title">Disponibilidad</div><div class="modal-avail">' + avail.map(a => '<span class="modal-avail-pill">' + a + '</span>').join('') + '</div></div>' : '') +
+    (certs.length ? '<div class="modal-section"><div class="modal-section-title">Títulos y certificados</div><div class="modal-certs">' + certs.map(c => '<div class="modal-cert">' + c.icon + ' ' + c.name + '</div>').join('') + '</div></div>' : '') +
+    '<div class="modal-section"><div class="modal-section-title">Contacto</div><div class="modal-links">' +
+    '<a href="mailto:' + m.email + '" class="btn-contact btn-contact-green">✉️ ' + m.email + '</a>' +
+    (m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : '') +
+    (m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : '') +
+    '</div></div>' +
+    '</div></div>'
+
+  document.body.insertAdjacentHTML('beforeend', html)
+}
+
+function cerrarModal() {
+  const modal = document.getElementById('perfil-modal')
+  if (modal) modal.remove()
+}
   async function init() {
     const { data: { session } } = await db.auth.getSession()
     if (session) { currentUser = session.user; showProfile() } else { showLogin() }
@@ -582,7 +635,8 @@
         : '<div class="match-av">' + initials + '</div>'
       const linkedin = m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : ''
       const instagram = m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : ''
-      return '<div class="match-card">' + avHtml + '<div class="match-info"><div class="match-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div><div class="match-city">' + (m.ciudad||'') + '</div>' + (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') + '<div class="match-tags">' + tagsO + tagsB + '</div><div class="match-contact"><button onclick="openChat(\'' + m.email + '\',\'' + (m.nombre||'') + ' ' + (m.apellido||'') + '\')" class="btn-contact btn-contact-green">💬 Escribirle</button>' + linkedin + instagram + '</div></div></div>'
+      return '<div class="match-card">' + avHtml + '<div class="match-info"><div class="match-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div><div class="match-city">' + (m.ciudad||'') + '</div>' + (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') + '<div class="match-tags">' + tagsO + tagsB + '</div><div class="match-contact">'<button onclick="verPerfil(\'' + m.email + '\')" class="btn-contact btn-contact-outline">👤 Ver perfil</button>' +
+'<button onclick="openChat(\'' + m.email + '\',\'' + (m.nombre||'') + ' ' + (m.apellido||'') + '\')" class="btn-contact btn-contact-green">💬 Escribirle</button>' + linkedin + instagram + '</div></div></div>'
     }).join('')
   }
 
