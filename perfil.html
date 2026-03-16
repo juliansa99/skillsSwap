@@ -30,7 +30,6 @@
   .btn-green:disabled { opacity: .6; cursor: not-allowed; }
   .page { display: none; }
   .page.active { display: block; }
-
   .login-wrap { min-height: calc(100vh - 60px); display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
   .login-card { background: var(--white); border-radius: 24px; border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 420px; }
   .login-card h1 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; }
@@ -49,12 +48,10 @@
   .msg-error { color: var(--red); font-size: 13px; padding: 10px 14px; background: var(--red-light); border-radius: 8px; margin-bottom: 12px; display: none; }
   .msg-success { color: var(--green-dark); font-size: 13px; padding: 10px 14px; background: var(--green-light); border-radius: 8px; margin-bottom: 12px; display: none; }
   .form-divider { text-align: center; font-size: 12px; color: var(--ink-3); margin: 16px 0; }
-
   .profile-tabs { display: flex; gap: 4px; padding: 20px 32px 0; max-width: 960px; margin: 0 auto; }
   .profile-tab { padding: 10px 20px; border-radius: 12px 12px 0 0; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); border-bottom: none; background: var(--surface); color: var(--ink-3); transition: all .2s; font-family: 'DM Sans', sans-serif; }
   .profile-tab.active { background: var(--white); color: var(--ink); }
   .notif-badge { background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 100px; margin-left: 6px; }
-
   .profile-layout { max-width: 960px; margin: 0 auto; padding: 0 32px 80px; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 20px 20px; }
   .tab-content { display: none; padding-top: 28px; }
   .tab-content.active { display: block; }
@@ -63,7 +60,6 @@
   .main-col { display: flex; flex-direction: column; gap: 20px; }
   .card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); padding: 20px; }
   .card h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 14px; color: var(--ink); }
-
   .avatar-section { text-align: center; padding-bottom: 4px; }
   .avatar-wrap { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 10px; position: relative; cursor: pointer; }
   .avatar-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green-light); }
@@ -76,7 +72,6 @@
   .pstat { text-align: center; }
   .pstat-num { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); }
   .pstat-lbl { font-size: 10px; color: var(--ink-3); }
-
   .skills-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; min-height: 8px; }
   .skill-tag { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 100px; font-size: 12px; }
   .skill-tag-offer { background: var(--green-light); color: var(--green-dark); }
@@ -90,14 +85,12 @@
   .btn-add:hover { background: var(--green-dark); }
   .btn-add-purple { padding: 7px 13px; border-radius: 8px; border: none; background: var(--purple); color: var(--white); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
   .btn-add-purple:hover { background: #3C3489; }
-
   .cat-grid { display: flex; flex-wrap: wrap; gap: 7px; }
   .cat-pill { padding: 6px 12px; border-radius: 100px; font-size: 12px; border: 1.5px solid var(--border-strong); background: var(--white); color: var(--ink-2); cursor: pointer; transition: all .15s; }
   .cat-pill:hover { border-color: var(--green); color: var(--green-dark); }
   .cat-pill.selected-offer { background: var(--green-light); border-color: var(--green); color: var(--green-dark); font-weight: 500; }
   .cat-pill.selected-want { background: var(--purple-light); border-color: var(--purple); color: var(--purple); font-weight: 500; }
   .cat-pill.disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
-
   .cert-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
   .cert-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); }
   .cert-icon { font-size: 18px; flex-shrink: 0; }
@@ -110,17 +103,14 @@
   .upload-area:hover { border-color: var(--green); background: var(--green-light); }
   .upload-area p { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
   .upload-area span { font-size: 22px; }
-
   .avail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .avail-item { display: flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 8px; border: 1.5px solid var(--border); cursor: pointer; transition: all .2s; font-size: 12px; }
   .avail-item.selected { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
   .avail-check { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; transition: all .2s; }
   .avail-item.selected .avail-check { background: var(--green); border-color: var(--green); }
-
   .save-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; background: var(--white); border-top: 1px solid var(--border); padding: 14px 32px; display: none; align-items: center; justify-content: space-between; box-shadow: 0 -4px 20px rgba(0,0,0,.06); }
   .save-bar.visible { display: flex; }
   .save-bar p { font-size: 13px; color: var(--ink-3); }
-
   .matches-grid { display: flex; flex-direction: column; gap: 16px; }
   .match-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; gap: 16px; align-items: flex-start; transition: box-shadow .2s; }
   .match-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
@@ -140,8 +130,6 @@
   .empty-state .emoji { font-size: 48px; margin-bottom: 16px; }
   .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
   .empty-state p { font-size: 14px; max-width: 340px; margin: 0 auto; }
-
-  /* MENSAJES */
   .chat-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; height: calc(100vh - 180px); min-height: 500px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
   .chat-sidebar { border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
   .chat-sidebar-title { padding: 16px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-3); border-bottom: 1px solid var(--border); }
@@ -157,6 +145,8 @@
   .chat-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
   .chat-header-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; }
   .chat-header-status { font-size: 12px; color: var(--green); }
+  .chat-header-btn { margin-left: auto; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--ink); border: 1.5px solid var(--border-strong); transition: all .2s; }
+  .chat-header-btn:hover { border-color: var(--ink); }
   .chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
   .chat-empty { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--ink-3); }
   .chat-empty span { font-size: 36px; }
@@ -175,7 +165,22 @@
   .chat-no-select { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--ink-3); }
   .chat-no-select span { font-size: 40px; }
   .chat-no-select p { font-size: 14px; }
-
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(18,18,15,.6); align-items: center; justify-content: center; backdrop-filter: blur(4px); padding: 20px; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: var(--white); border-radius: 24px; padding: 32px; width: 100%; max-width: 520px; max-height: 85vh; overflow-y: auto; position: relative; animation: modalIn .25s ease; }
+  @keyframes modalIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
+  .modal-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 22px; color: var(--ink-3); cursor: pointer; }
+  .modal-av { width: 72px; height: 72px; border-radius: 50%; background: var(--green-light); color: var(--green-dark); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+  .modal-name { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+  .modal-city { font-size: 13px; color: var(--ink-3); margin-bottom: 16px; }
+  .modal-bio { font-size: 14px; color: var(--ink-2); line-height: 1.65; margin-bottom: 20px; padding: 14px; background: var(--surface); border-radius: 12px; }
+  .modal-section { margin-bottom: 18px; }
+  .modal-section-title { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .modal-avail { display: flex; flex-wrap: wrap; gap: 6px; }
+  .modal-avail-pill { padding: 5px 12px; border-radius: 100px; font-size: 12px; background: var(--green-light); color: var(--green-dark); }
+  .modal-certs { display: flex; flex-direction: column; gap: 6px; }
+  .modal-cert { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 8px 12px; background: var(--surface); border-radius: 8px; }
+  .modal-links { display: flex; gap: 8px; flex-wrap: wrap; }
   @media (max-width: 700px) {
     .two-col { grid-template-columns: 1fr; }
     .profile-tabs { padding: 16px 16px 0; }
@@ -187,22 +192,6 @@
     .chat-sidebar { max-height: 200px; border-right: none; border-bottom: 1px solid var(--border); }
     .chat-main { min-height: 400px; }
   }
-  .modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(18,18,15,.6); align-items:center; justify-content:center; backdrop-filter:blur(4px); padding:20px; }
-.modal-overlay.open { display:flex; }
-.modal-box { background:var(--white); border-radius:24px; padding:32px; width:100%; max-width:520px; max-height:85vh; overflow-y:auto; position:relative; animation:modalIn .25s ease; }
-@keyframes modalIn { from{opacity:0;transform:scale(.96) translateY(8px)} to{opacity:1;transform:none} }
-.modal-close { position:absolute; top:14px; right:18px; background:none; border:none; font-size:22px; color:var(--ink-3); cursor:pointer; }
-.modal-av { width:72px; height:72px; border-radius:50%; background:var(--green-light); color:var(--green-dark); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:24px; font-weight:700; margin-bottom:12px; }
-.modal-name { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; margin-bottom:2px; }
-.modal-city { font-size:13px; color:var(--ink-3); margin-bottom:16px; }
-.modal-bio { font-size:14px; color:var(--ink-2); line-height:1.65; margin-bottom:20px; padding:14px; background:var(--surface); border-radius:12px; }
-.modal-section { margin-bottom:18px; }
-.modal-section-title { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; }
-.modal-avail { display:flex; flex-wrap:wrap; gap:6px; }
-.modal-avail-pill { padding:5px 12px; border-radius:100px; font-size:12px; background:var(--green-light); color:var(--green-dark); }
-.modal-certs { display:flex; flex-direction:column; gap:6px; }
-.modal-cert { display:flex; align-items:center; gap:8px; font-size:13px; padding:8px 12px; background:var(--surface); border-radius:8px; }
-.modal-links { display:flex; gap:8px; flex-wrap:wrap; }
 </style>
 </head>
 <body>
@@ -215,7 +204,6 @@
   </div>
 </nav>
 
-<!-- LOGIN -->
 <div class="page active" id="page-login">
   <div class="login-wrap">
     <div class="login-card">
@@ -259,16 +247,14 @@
   </div>
 </div>
 
-<!-- PERFIL -->
 <div class="page" id="page-profile">
   <div class="profile-tabs">
-    <button class="profile-tab active" onclick="switchTab('mi-perfil', this)">Mi perfil</button>
-    <button class="profile-tab" onclick="switchTab('mis-matches', this)">Mis matches <span class="notif-badge" id="match-count" style="display:none">0</span></button>
-    <button class="profile-tab" onclick="switchTab('mensajes', this)">Mensajes <span class="notif-badge" id="msg-count" style="display:none">0</span></button>
+    <button class="profile-tab active" id="tab-btn-mi-perfil" onclick="switchTab('mi-perfil', this)">Mi perfil</button>
+    <button class="profile-tab" id="tab-btn-mis-matches" onclick="switchTab('mis-matches', this)">Mis matches <span class="notif-badge" id="match-count" style="display:none">0</span></button>
+    <button class="profile-tab" id="tab-btn-mensajes" onclick="switchTab('mensajes', this)">Mensajes <span class="notif-badge" id="msg-count" style="display:none">0</span></button>
   </div>
   <div class="profile-layout">
 
-    <!-- TAB MI PERFIL -->
     <div class="tab-content active" id="tab-mi-perfil">
       <div class="two-col">
         <div class="sidebar">
@@ -356,14 +342,12 @@
       </div>
     </div>
 
-    <!-- TAB MIS MATCHES -->
     <div class="tab-content" id="tab-mis-matches">
       <div class="matches-grid" id="matches-grid">
         <div class="empty-state"><div class="emoji">🤝</div><h3>Todavía no tenés matches</h3><p>Completá tus habilidades y cuando alguien coincida con vos vas a verlo acá.</p></div>
       </div>
     </div>
 
-    <!-- TAB MENSAJES -->
     <div class="tab-content" id="tab-mensajes">
       <div class="chat-layout">
         <div class="chat-sidebar">
@@ -371,10 +355,7 @@
           <div id="chat-contacts"></div>
         </div>
         <div class="chat-main" id="chat-main">
-          <div class="chat-no-select">
-            <span>💬</span>
-            <p>Seleccioná una conversación</p>
-          </div>
+          <div class="chat-no-select"><span>💬</span><p>Seleccioná una conversación</p></div>
         </div>
       </div>
     </div>
@@ -396,7 +377,7 @@
   const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
   let currentUser = null, isDirty = false
   let skillsOfrezco = [], skillsBusco = [], certs = [], availability = []
-  let activeChatEmail = null, chatSub = null
+  let activeChatEmail = null, activeChatNombre = null, chatSub = null
 
   const CATEGORIAS = [
     '🍳 Cocina','🌍 Inglés','🇧🇷 Portugués','🇫🇷 Francés','🇩🇪 Alemán',
@@ -416,43 +397,12 @@
     if (tab === 'mensajes') loadChatContacts()
   }
 
-  async function verPerfil(email) {
-  const { data: m } = await db.from('perfiles').select('*').eq('email', email).single()
-  if (!m) return
-  const initials = ((m.nombre||'?')[0] + (m.apellido||'')[0]).toUpperCase()
-  const avHtml = m.foto_url
-    ? '<img src="' + m.foto_url + '" style="width:72px;height:72px;border-radius:50%;object-fit:cover">'
-    : '<div class="modal-av">' + initials + '</div>'
-  const skillsO = m.skills_ofrezco ? JSON.parse(m.skills_ofrezco) : (m.habilidad_ofrezco ? [m.habilidad_ofrezco] : [])
-  const skillsB = m.skills_busco ? JSON.parse(m.skills_busco) : (m.habilidad_busco ? [m.habilidad_busco] : [])
-  const avail = m.disponibilidad ? JSON.parse(m.disponibilidad) : []
-  const certs = m.certificados ? JSON.parse(m.certificados) : []
+  function goToChat(email, nombre) {
+    const btn = document.getElementById('tab-btn-mensajes')
+    switchTab('mensajes', btn)
+    setTimeout(() => openChat(email, nombre), 300)
+  }
 
-  const html = '<div class="modal-overlay open" id="perfil-modal" onclick="if(event.target===this)cerrarModal()">' +
-    '<div class="modal-box">' +
-    '<button class="modal-close" onclick="cerrarModal()">×</button>' +
-    avHtml +
-    '<div class="modal-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div>' +
-    '<div class="modal-city">📍 ' + (m.ciudad||'') + '</div>' +
-    (m.bio ? '<div class="modal-bio">' + m.bio + '</div>' : '') +
-    '<div class="modal-section"><div class="modal-section-title">Lo que ofrece</div><div class="skills-list">' + skillsO.map(s => '<span class="skill-tag skill-tag-offer">' + s + '</span>').join('') + '</div></div>' +
-    '<div class="modal-section"><div class="modal-section-title">Lo que busca aprender</div><div class="skills-list">' + skillsB.map(s => '<span class="skill-tag skill-tag-want">' + s + '</span>').join('') + '</div></div>' +
-    (avail.length ? '<div class="modal-section"><div class="modal-section-title">Disponibilidad</div><div class="modal-avail">' + avail.map(a => '<span class="modal-avail-pill">' + a + '</span>').join('') + '</div></div>' : '') +
-    (certs.length ? '<div class="modal-section"><div class="modal-section-title">Títulos y certificados</div><div class="modal-certs">' + certs.map(c => '<div class="modal-cert">' + c.icon + ' ' + c.name + '</div>').join('') + '</div></div>' : '') +
-    '<div class="modal-section"><div class="modal-section-title">Contacto</div><div class="modal-links">' +
-    '<a href="mailto:' + m.email + '" class="btn-contact btn-contact-green">✉️ ' + m.email + '</a>' +
-    (m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : '') +
-    (m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : '') +
-    '</div></div>' +
-    '</div></div>'
-
-  document.body.insertAdjacentHTML('beforeend', html)
-}
-
-function cerrarModal() {
-  const modal = document.getElementById('perfil-modal')
-  if (modal) modal.remove()
-}
   async function init() {
     const { data: { session } } = await db.auth.getSession()
     if (session) { currentUser = session.user; showProfile() } else { showLogin() }
@@ -633,19 +583,60 @@ function cerrarModal() {
       const avHtml = m.foto_url
         ? '<img src="' + m.foto_url + '" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">'
         : '<div class="match-av">' + initials + '</div>'
-      const linkedin = m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : ''
-      const instagram = m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : ''
-      return '<div class="match-card">' + avHtml + '<div class="match-info"><div class="match-name">' + (m.nombre||'') + ' ' + (m.apellido||'') + '</div><div class="match-city">' + (m.ciudad||'') + '</div>' + (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') + '<div class="match-tags">' + tagsO + tagsB + '</div><div class="match-contact">'<button onclick="verPerfil(\'' + m.email + '\')" class="btn-contact btn-contact-outline">👤 Ver perfil</button>' +
-'<button onclick="openChat(\'' + m.email + '\',\'' + (m.nombre||'') + ' ' + (m.apellido||'') + '\')" class="btn-contact btn-contact-green">💬 Escribirle</button>' + linkedin + instagram + '</div></div></div>'
+      const nombre = (m.nombre || '') + ' ' + (m.apellido || '')
+      return '<div class="match-card">' + avHtml +
+        '<div class="match-info">' +
+        '<div class="match-name">' + nombre + '</div>' +
+        '<div class="match-city">📍 ' + (m.ciudad || '') + '</div>' +
+        (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') +
+        '<div class="match-tags">' + tagsO + tagsB + '</div>' +
+        '<div class="match-contact">' +
+        '<button onclick="verPerfil(\'' + m.email + '\')" class="btn-contact btn-contact-outline">👤 Ver perfil</button>' +
+        '<button onclick="goToChat(\'' + m.email + '\',\'' + nombre.trim() + '\')" class="btn-contact btn-contact-green">💬 Escribirle</button>' +
+        '</div></div></div>'
     }).join('')
   }
 
-  // ─── CHAT ─────────────────────────────────────────────
+  async function verPerfil(email) {
+    const { data: m } = await db.from('perfiles').select('*').eq('email', email).single()
+    if (!m) return
+    const initials = ((m.nombre || '?')[0] + (m.apellido || '')[0]).toUpperCase()
+    const avHtml = m.foto_url
+      ? '<img src="' + m.foto_url + '" style="width:72px;height:72px;border-radius:50%;object-fit:cover">'
+      : '<div class="modal-av">' + initials + '</div>'
+    const skillsO = m.skills_ofrezco ? JSON.parse(m.skills_ofrezco) : (m.habilidad_ofrezco ? [m.habilidad_ofrezco] : [])
+    const skillsB = m.skills_busco ? JSON.parse(m.skills_busco) : (m.habilidad_busco ? [m.habilidad_busco] : [])
+    const avail = m.disponibilidad ? JSON.parse(m.disponibilidad) : []
+    const certsM = m.certificados ? JSON.parse(m.certificados) : []
+    const nombre = (m.nombre || '') + ' ' + (m.apellido || '')
+    const html =
+      '<div class="modal-overlay open" id="perfil-modal" onclick="if(event.target===this)cerrarModal()">' +
+      '<div class="modal-box">' +
+      '<button class="modal-close" onclick="cerrarModal()">×</button>' +
+      avHtml +
+      '<div class="modal-name">' + nombre + '</div>' +
+      '<div class="modal-city">📍 ' + (m.ciudad || '') + '</div>' +
+      (m.bio ? '<div class="modal-bio">' + m.bio + '</div>' : '') +
+      '<div class="modal-section"><div class="modal-section-title">Lo que ofrece</div><div class="skills-list">' + skillsO.map(s => '<span class="skill-tag skill-tag-offer">' + s + '</span>').join('') + '</div></div>' +
+      '<div class="modal-section"><div class="modal-section-title">Lo que busca aprender</div><div class="skills-list">' + skillsB.map(s => '<span class="skill-tag skill-tag-want">' + s + '</span>').join('') + '</div></div>' +
+      (avail.length ? '<div class="modal-section"><div class="modal-section-title">Disponibilidad</div><div class="modal-avail">' + avail.map(a => '<span class="modal-avail-pill">' + a + '</span>').join('') + '</div></div>' : '') +
+      (certsM.length ? '<div class="modal-section"><div class="modal-section-title">Títulos y certificados</div><div class="modal-certs">' + certsM.map(c => '<div class="modal-cert">' + c.icon + ' ' + c.name + '</div>').join('') + '</div></div>' : '') +
+      '<div class="modal-section"><div class="modal-section-title">Contacto</div><div class="modal-links">' +
+      (m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : '') +
+      (m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : '') +
+      '<button onclick="cerrarModal();goToChat(\'' + m.email + '\',\'' + nombre.trim() + '\')" class="btn-contact btn-contact-green">💬 Escribirle</button>' +
+      '</div></div>' +
+      '</div></div>'
+    document.body.insertAdjacentHTML('beforeend', html)
+  }
+
+  function cerrarModal() {
+    const modal = document.getElementById('perfil-modal')
+    if (modal) modal.remove()
+  }
+
   async function loadUnreadCount() {
-    const { data } = await db.from('mensajes')
-      .select('id')
-      .eq('para_email', currentUser.email)
-      .eq('leido', false)
+    const { data } = await db.from('mensajes').select('id').eq('para_email', currentUser.email).eq('leido', false)
     const count = data ? data.length : 0
     const badge = document.getElementById('msg-count')
     if (count > 0) { badge.textContent = count; badge.style.display = ''; }
@@ -663,12 +654,10 @@ function cerrarModal() {
     }
     const { data: perfiles } = await db.from('perfiles').select('*').in('email', matchEmails)
     if (!perfiles) return
-
     const { data: mensajes } = await db.from('mensajes')
       .select('*')
       .or('de_email.eq.' + currentUser.email + ',para_email.eq.' + currentUser.email)
       .order('created_at', { ascending: false })
-
     container.innerHTML = perfiles.map(p => {
       const initials = ((p.nombre || '?')[0] + (p.apellido || '')[0]).toUpperCase()
       const ultimoMsg = mensajes ? mensajes.find(m =>
@@ -680,9 +669,10 @@ function cerrarModal() {
         ? '<img src="' + p.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">'
         : '<div class="chat-av">' + initials + '</div>'
       const isActive = activeChatEmail === p.email ? ' active' : ''
-      return '<div class="chat-contact' + isActive + '" onclick="openChat(\'' + p.email + '\',\'' + (p.nombre||'') + ' ' + (p.apellido||'') + '\')">' +
+      const nombre = (p.nombre || '') + ' ' + (p.apellido || '')
+      return '<div class="chat-contact' + isActive + '" onclick="openChat(\'' + p.email + '\',\'' + nombre.trim() + '\')">' +
         avHtml +
-        '<div class="chat-contact-info"><div class="chat-contact-name">' + (p.nombre||'') + ' ' + (p.apellido||'') + '</div>' +
+        '<div class="chat-contact-info"><div class="chat-contact-name">' + nombre + '</div>' +
         '<div class="chat-contact-preview">' + (ultimoMsg ? ultimoMsg.texto.substring(0,30) + (ultimoMsg.texto.length > 30 ? '...' : '') : 'Sin mensajes aún') + '</div></div>' +
         (noLeidos > 0 ? '<span class="chat-unread">' + noLeidos + '</span>' : '') +
         '</div>'
@@ -691,47 +681,35 @@ function cerrarModal() {
 
   async function openChat(email, nombre) {
     activeChatEmail = email
+    activeChatNombre = nombre
     if (chatSub) { chatSub.unsubscribe(); chatSub = null; }
     document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'))
     document.querySelectorAll('.chat-contact').forEach(c => {
       if (c.getAttribute('onclick') && c.getAttribute('onclick').includes(email)) c.classList.add('active')
     })
     const { data: perfil } = await db.from('perfiles').select('foto_url,nombre,apellido').eq('email', email).single()
-    const initials = perfil ? ((perfil.nombre||'?')[0] + (perfil.apellido||'')[0]).toUpperCase() : '?'
+    const initials = perfil ? ((perfil.nombre || '?')[0] + (perfil.apellido || '')[0]).toUpperCase() : '?'
     const avHtml = perfil && perfil.foto_url
       ? '<img src="' + perfil.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">'
       : '<div class="chat-av">' + initials + '</div>'
     document.getElementById('chat-main').innerHTML =
-      '<div class="chat-header">' + avHtml + '<div><div class="chat-header-name">' + nombre + '</div><div class="chat-header-status">● En línea</div></div></div>' +
+      '<div class="chat-header">' + avHtml +
+      '<div><div class="chat-header-name">' + nombre + '</div><div class="chat-header-status">● En línea</div></div>' +
+      '<button class="chat-header-btn" onclick="verPerfil(\'' + email + '\')">👤 Ver perfil</button>' +
+      '</div>' +
       '<div class="chat-messages" id="chat-messages"></div>' +
       '<div class="chat-input-row"><textarea class="chat-input" id="chat-input" placeholder="Escribí un mensaje..." rows="1" onkeydown="handleChatKey(event)"></textarea>' +
       '<button class="btn-send" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></button></div>'
-
     await loadMessages(email)
-
-    await db.from('mensajes').update({ leido: true })
-      .eq('de_email', email)
-      .eq('para_email', currentUser.email)
-      .eq('leido', false)
-
+    await db.from('mensajes').update({ leido: true }).eq('de_email', email).eq('para_email', currentUser.email).eq('leido', false)
     loadUnreadCount()
-
     chatSub = db.channel('chat-' + currentUser.email + '-' + email)
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'mensajes',
-        filter: 'para_email=eq.' + currentUser.email
-      }, async (payload) => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'mensajes', filter: 'para_email=eq.' + currentUser.email }, async (payload) => {
         if (payload.new.de_email === activeChatEmail) {
           appendMessage(payload.new, false)
           await db.from('mensajes').update({ leido: true }).eq('id', payload.new.id)
-          loadUnreadCount()
-          scrollChat()
-        } else {
-          loadUnreadCount()
-          loadChatContacts()
-        }
+          loadUnreadCount(); scrollChat()
+        } else { loadUnreadCount(); loadChatContacts() }
       })
       .subscribe()
   }
@@ -739,12 +717,8 @@ function cerrarModal() {
   async function loadMessages(email) {
     const { data } = await db.from('mensajes')
       .select('*')
-      .or(
-        'and(de_email.eq.' + currentUser.email + ',para_email.eq.' + email + '),' +
-        'and(de_email.eq.' + email + ',para_email.eq.' + currentUser.email + ')'
-      )
+      .or('and(de_email.eq.' + currentUser.email + ',para_email.eq.' + email + '),and(de_email.eq.' + email + ',para_email.eq.' + currentUser.email + ')')
       .order('created_at', { ascending: true })
-
     const container = document.getElementById('chat-messages')
     if (!data || data.length === 0) {
       container.innerHTML = '<div class="chat-empty"><span>👋</span><p>¡Rompé el hielo y mandá el primer mensaje!</p></div>'
@@ -797,21 +771,13 @@ function cerrarModal() {
 
   function subscribeToMessages() {
     db.channel('all-messages-' + currentUser.email)
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'mensajes',
-        filter: 'para_email=eq.' + currentUser.email
-      }, () => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'mensajes', filter: 'para_email=eq.' + currentUser.email }, () => {
         loadUnreadCount()
-        if (document.getElementById('tab-mensajes').classList.contains('active')) {
-          loadChatContacts()
-        }
+        if (document.getElementById('tab-mensajes').classList.contains('active')) loadChatContacts()
       })
       .subscribe()
   }
 
-  // ─── CATEGORIES ──────────────────────────────────────
   function initCatGrids() {
     renderCatGrid('cat-grid-ofrezco', 'ofrezco')
     renderCatGrid('cat-grid-busco', 'busco')
