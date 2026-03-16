@@ -14,6 +14,7 @@
     --surface: #F7F6F1; --white: #FDFCF9;
     --border: rgba(18,18,15,0.10); --border-strong: rgba(18,18,15,0.20);
     --red: #A32D2D; --red-light: #FCEBEB;
+    --amber: #BA7517; --amber-light: #FAEEDA;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -30,6 +31,7 @@
   .btn-green:disabled { opacity: .6; cursor: not-allowed; }
   .page { display: none; }
   .page.active { display: block; }
+
   .login-wrap { min-height: calc(100vh - 60px); display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
   .login-card { background: var(--white); border-radius: 24px; border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 420px; }
   .login-card h1 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; }
@@ -48,10 +50,12 @@
   .msg-error { color: var(--red); font-size: 13px; padding: 10px 14px; background: var(--red-light); border-radius: 8px; margin-bottom: 12px; display: none; }
   .msg-success { color: var(--green-dark); font-size: 13px; padding: 10px 14px; background: var(--green-light); border-radius: 8px; margin-bottom: 12px; display: none; }
   .form-divider { text-align: center; font-size: 12px; color: var(--ink-3); margin: 16px 0; }
-  .profile-tabs { display: flex; gap: 4px; padding: 20px 32px 0; max-width: 960px; margin: 0 auto; }
-  .profile-tab { padding: 10px 20px; border-radius: 12px 12px 0 0; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); border-bottom: none; background: var(--surface); color: var(--ink-3); transition: all .2s; font-family: 'DM Sans', sans-serif; }
+
+  .profile-tabs { display: flex; gap: 4px; padding: 20px 32px 0; max-width: 960px; margin: 0 auto; flex-wrap: wrap; }
+  .profile-tab { padding: 10px 16px; border-radius: 12px 12px 0 0; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid var(--border); border-bottom: none; background: var(--surface); color: var(--ink-3); transition: all .2s; font-family: 'DM Sans', sans-serif; }
   .profile-tab.active { background: var(--white); color: var(--ink); }
   .notif-badge { background: var(--green); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 100px; margin-left: 6px; }
+
   .profile-layout { max-width: 960px; margin: 0 auto; padding: 0 32px 80px; background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 20px 20px; }
   .tab-content { display: none; padding-top: 28px; }
   .tab-content.active { display: block; }
@@ -60,10 +64,16 @@
   .main-col { display: flex; flex-direction: column; gap: 20px; }
   .card { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); padding: 20px; }
   .card h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 14px; color: var(--ink); }
-  .avatar-section { text-align: center; padding-bottom: 4px; }
-  .avatar-wrap { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 10px; position: relative; cursor: pointer; }
-  .avatar-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green-light); }
-  .avatar-placeholder { width: 88px; height: 88px; border-radius: 50%; background: var(--green-light); border: 3px solid var(--green-light); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: var(--green-dark); }
+
+  .cover-wrap { position: relative; height: 100px; border-radius: 12px 12px 0 0; overflow: hidden; cursor: pointer; background: linear-gradient(135deg, #E1F5EE, #EEEDFE); margin: -20px -20px 0; }
+  .cover-img { width: 100%; height: 100%; object-fit: cover; }
+  .cover-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; font-size: 13px; color: white; font-weight: 500; }
+  .cover-wrap:hover .cover-overlay { opacity: 1; }
+
+  .avatar-section { text-align: center; padding-bottom: 4px; margin-top: -30px; position: relative; z-index: 1; }
+  .avatar-wrap { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 10px; position: relative; cursor: pointer; display: inline-block; }
+  .avatar-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--white); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+  .avatar-placeholder { width: 88px; height: 88px; border-radius: 50%; background: var(--green-light); border: 3px solid var(--white); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: var(--green-dark); }
   .avatar-overlay { position: absolute; inset: 0; border-radius: 50%; background: rgba(0,0,0,.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; font-size: 18px; }
   .avatar-wrap:hover .avatar-overlay { opacity: 1; }
   .profile-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
@@ -72,25 +82,36 @@
   .pstat { text-align: center; }
   .pstat-num { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); }
   .pstat-lbl { font-size: 10px; color: var(--ink-3); }
+
+  .visit-notif { background: var(--amber-light); border: 1px solid rgba(186,117,23,.2); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--amber); display: none; margin-bottom: 12px; }
+  .visit-notif.show { display: block; }
+
   .skills-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; min-height: 8px; }
   .skill-tag { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 100px; font-size: 12px; }
   .skill-tag-offer { background: var(--green-light); color: var(--green-dark); }
   .skill-tag-want { background: var(--purple-light); color: var(--purple); }
   .skill-remove { background: none; border: none; cursor: pointer; font-size: 13px; color: inherit; opacity: .6; padding: 0; line-height: 1; }
   .skill-remove:hover { opacity: 1; }
-  .skill-input-row { display: flex; gap: 8px; margin-top: 8px; }
-  .skill-input-row input { flex: 1; padding: 7px 11px; border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color .2s; }
+  .skill-input-row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .skill-input-row input { flex: 1; min-width: 120px; padding: 7px 11px; border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); outline: none; transition: border-color .2s; }
   .skill-input-row input:focus { border-color: var(--green); }
+  .skill-input-row select { padding: 7px 10px; border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 12px; font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); outline: none; }
   .btn-add { padding: 7px 13px; border-radius: 8px; border: none; background: var(--green); color: var(--white); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
   .btn-add:hover { background: var(--green-dark); }
   .btn-add-purple { padding: 7px 13px; border-radius: 8px; border: none; background: var(--purple); color: var(--white); font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background .2s; }
   .btn-add-purple:hover { background: #3C3489; }
+  .nivel-badge { font-size: 10px; padding: 2px 6px; border-radius: 100px; margin-left: 4px; }
+  .nivel-basico { background: #E1F5EE; color: #0F6E56; }
+  .nivel-intermedio { background: #FAEEDA; color: #633806; }
+  .nivel-experto { background: #EEEDFE; color: #3C3489; }
+
   .cat-grid { display: flex; flex-wrap: wrap; gap: 7px; }
   .cat-pill { padding: 6px 12px; border-radius: 100px; font-size: 12px; border: 1.5px solid var(--border-strong); background: var(--white); color: var(--ink-2); cursor: pointer; transition: all .15s; }
   .cat-pill:hover { border-color: var(--green); color: var(--green-dark); }
   .cat-pill.selected-offer { background: var(--green-light); border-color: var(--green); color: var(--green-dark); font-weight: 500; }
   .cat-pill.selected-want { background: var(--purple-light); border-color: var(--purple); color: var(--purple); font-weight: 500; }
   .cat-pill.disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
+
   .cert-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
   .cert-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); }
   .cert-icon { font-size: 18px; flex-shrink: 0; }
@@ -103,14 +124,17 @@
   .upload-area:hover { border-color: var(--green); background: var(--green-light); }
   .upload-area p { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
   .upload-area span { font-size: 22px; }
+
   .avail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .avail-item { display: flex; align-items: center; gap: 7px; padding: 7px 11px; border-radius: 8px; border: 1.5px solid var(--border); cursor: pointer; transition: all .2s; font-size: 12px; }
   .avail-item.selected { border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; }
   .avail-check { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--border-strong); flex-shrink: 0; transition: all .2s; }
   .avail-item.selected .avail-check { background: var(--green); border-color: var(--green); }
+
   .save-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; background: var(--white); border-top: 1px solid var(--border); padding: 14px 32px; display: none; align-items: center; justify-content: space-between; box-shadow: 0 -4px 20px rgba(0,0,0,.06); }
   .save-bar.visible { display: flex; }
   .save-bar p { font-size: 13px; color: var(--ink-3); }
+
   .matches-grid { display: flex; flex-direction: column; gap: 16px; }
   .match-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; gap: 16px; align-items: flex-start; transition: box-shadow .2s; }
   .match-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
@@ -130,6 +154,7 @@
   .empty-state .emoji { font-size: 48px; margin-bottom: 16px; }
   .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
   .empty-state p { font-size: 14px; max-width: 340px; margin: 0 auto; }
+
   .chat-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; height: calc(100vh - 180px); min-height: 500px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
   .chat-sidebar { border-right: 1px solid var(--border); background: var(--surface); overflow-y: auto; }
   .chat-sidebar-title { padding: 16px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--ink-3); border-bottom: 1px solid var(--border); }
@@ -165,6 +190,46 @@
   .chat-no-select { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--ink-3); }
   .chat-no-select span { font-size: 40px; }
   .chat-no-select p { font-size: 14px; }
+
+  .intercambios-list { display: flex; flex-direction: column; gap: 14px; }
+  .intercambio-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+  .intercambio-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .intercambio-av { width: 40px; height: 40px; border-radius: 50%; background: var(--green-light); color: var(--green-dark); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .intercambio-info { flex: 1; }
+  .intercambio-nombre { font-size: 14px; font-weight: 500; }
+  .intercambio-detalle { font-size: 12px; color: var(--ink-3); }
+  .intercambio-estado { font-size: 11px; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+  .estado-activo { background: var(--green-light); color: var(--green-dark); }
+  .estado-completado { background: var(--surface); color: var(--ink-3); }
+  .sesiones-bar { margin-top: 10px; }
+  .sesiones-label { font-size: 11px; color: var(--ink-3); margin-bottom: 5px; }
+  .sesiones-track { background: var(--surface); border-radius: 100px; height: 6px; overflow: hidden; }
+  .sesiones-fill { background: var(--green); height: 100%; border-radius: 100px; transition: width .3s; }
+  .intercambio-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .btn-sesion { padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; border: none; transition: all .2s; }
+  .btn-sesion-green { background: var(--green); color: var(--white); }
+  .btn-sesion-green:hover { background: var(--green-dark); }
+  .btn-sesion-outline { background: none; color: var(--ink); border: 1.5px solid var(--border-strong); }
+  .btn-sesion-outline:hover { border-color: var(--ink); }
+  .nuevo-intercambio-form { background: var(--surface); border-radius: 12px; padding: 16px; margin-top: 16px; }
+  .nuevo-intercambio-form h4 { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .nuevo-intercambio-form select, .nuevo-intercambio-form input { width: 100%; padding: 9px 12px; border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); outline: none; margin-bottom: 10px; }
+
+  .resenas-list { display: flex; flex-direction: column; gap: 14px; }
+  .resena-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+  .resena-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .resena-av { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light); color: var(--green-dark); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .resena-autor { flex: 1; }
+  .resena-nombre { font-size: 13px; font-weight: 500; }
+  .resena-fecha { font-size: 11px; color: var(--ink-3); }
+  .resena-stars { color: #EF9F27; font-size: 14px; margin-bottom: 6px; }
+  .resena-texto { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+  .dejar-resena { background: var(--surface); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+  .dejar-resena h4 { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .stars-select { display: flex; gap: 6px; margin-bottom: 12px; }
+  .star-btn { font-size: 22px; cursor: pointer; opacity: .3; transition: opacity .15s, transform .1s; background: none; border: none; padding: 0; }
+  .star-btn.active { opacity: 1; transform: scale(1.1); }
+
   .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(18,18,15,.6); align-items: center; justify-content: center; backdrop-filter: blur(4px); padding: 20px; }
   .modal-overlay.open { display: flex; }
   .modal-box { background: var(--white); border-radius: 24px; padding: 32px; width: 100%; max-width: 520px; max-height: 85vh; overflow-y: auto; position: relative; animation: modalIn .25s ease; }
@@ -181,6 +246,12 @@
   .modal-certs { display: flex; flex-direction: column; gap: 6px; }
   .modal-cert { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 8px 12px; background: var(--surface); border-radius: 8px; }
   .modal-links { display: flex; gap: 8px; flex-wrap: wrap; }
+  .modal-resenas { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .modal-resena { background: var(--surface); border-radius: 10px; padding: 12px; font-size: 13px; }
+  .modal-resena-stars { color: #EF9F27; font-size: 12px; margin-bottom: 4px; }
+  .modal-resena-texto { color: var(--ink-2); line-height: 1.5; margin-bottom: 6px; }
+  .modal-resena-autor { font-size: 11px; color: var(--ink-3); }
+
   @media (max-width: 700px) {
     .two-col { grid-template-columns: 1fr; }
     .profile-tabs { padding: 16px 16px 0; }
@@ -252,26 +323,37 @@
     <button class="profile-tab active" id="tab-btn-mi-perfil" onclick="switchTab('mi-perfil', this)">Mi perfil</button>
     <button class="profile-tab" id="tab-btn-mis-matches" onclick="switchTab('mis-matches', this)">Mis matches <span class="notif-badge" id="match-count" style="display:none">0</span></button>
     <button class="profile-tab" id="tab-btn-mensajes" onclick="switchTab('mensajes', this)">Mensajes <span class="notif-badge" id="msg-count" style="display:none">0</span></button>
+    <button class="profile-tab" id="tab-btn-intercambios" onclick="switchTab('intercambios', this)">Intercambios</button>
+    <button class="profile-tab" id="tab-btn-resenas" onclick="switchTab('resenas', this)">Reseñas</button>
   </div>
   <div class="profile-layout">
 
     <div class="tab-content active" id="tab-mi-perfil">
       <div class="two-col">
         <div class="sidebar">
-          <div class="card">
-            <div class="avatar-section">
-              <div class="avatar-wrap" onclick="document.getElementById('avatar-input').click()">
-                <div class="avatar-placeholder" id="avatar-placeholder">?</div>
-                <img class="avatar-img" id="avatar-img" style="display:none" src="" alt="foto">
-                <div class="avatar-overlay">📷</div>
-              </div>
-              <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatar(this)">
-              <div class="profile-name" id="display-name">Tu nombre</div>
-              <div class="profile-city" id="display-city">—</div>
+          <div class="card" style="padding:0;overflow:hidden">
+            <div class="cover-wrap" onclick="document.getElementById('cover-input').click()">
+              <img class="cover-img" id="cover-img" src="" alt="" style="display:none">
+              <div class="cover-overlay">📷 Cambiar portada</div>
             </div>
-            <div class="profile-stats">
-              <div class="pstat"><div class="pstat-num" id="stat-habilidades">0</div><div class="pstat-lbl">habilidades</div></div>
-              <div class="pstat"><div class="pstat-num" id="stat-matches">0</div><div class="pstat-lbl">matches</div></div>
+            <input type="file" id="cover-input" accept="image/*" style="display:none" onchange="handleCover(this)">
+            <div style="padding:0 16px 16px">
+              <div class="avatar-section">
+                <div class="avatar-wrap" onclick="document.getElementById('avatar-input').click()">
+                  <div class="avatar-placeholder" id="avatar-placeholder">?</div>
+                  <img class="avatar-img" id="avatar-img" style="display:none" src="" alt="foto">
+                  <div class="avatar-overlay">📷</div>
+                </div>
+                <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatar(this)">
+                <div class="profile-name" id="display-name">Tu nombre</div>
+                <div class="profile-city" id="display-city">—</div>
+              </div>
+              <div id="visit-notif" class="visit-notif"></div>
+              <div class="profile-stats">
+                <div class="pstat"><div class="pstat-num" id="stat-habilidades">0</div><div class="pstat-lbl">habilidades</div></div>
+                <div class="pstat"><div class="pstat-num" id="stat-matches">0</div><div class="pstat-lbl">matches</div></div>
+                <div class="pstat"><div class="pstat-num" id="stat-resenas">0</div><div class="pstat-lbl">reseñas</div></div>
+              </div>
             </div>
           </div>
           <div class="card">
@@ -314,7 +396,8 @@
             <p style="font-size:11px;color:var(--ink-3);margin-bottom:8px">Seleccioná hasta 5 categorías:</p>
             <div class="cat-grid" id="cat-grid-ofrezco"></div>
             <div class="skill-input-row">
-              <input id="inp-skill-ofrezco" type="text" placeholder="O escribí una habilidad específica...">
+              <input id="inp-skill-ofrezco" type="text" placeholder="O escribí una habilidad...">
+              <select id="nivel-ofrezco"><option value="básico">Básico</option><option value="intermedio">Intermedio</option><option value="experto">Experto</option></select>
               <button class="btn-add" onclick="addSkill('ofrezco')">+ Agregar</button>
             </div>
           </div>
@@ -360,6 +443,18 @@
       </div>
     </div>
 
+    <div class="tab-content" id="tab-intercambios">
+      <div id="intercambios-container">
+        <div class="empty-state"><div class="emoji">🔄</div><h3>No tenés intercambios activos</h3><p>Cuando acordés un intercambio con un match, va a aparecer acá para que puedas llevar el seguimiento.</p></div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-resenas">
+      <div id="resenas-container">
+        <div class="empty-state"><div class="emoji">⭐</div><h3>Todavía no tenés reseñas</h3><p>Cuando completes intercambios, los demás usuarios van a poder dejarte una reseña acá.</p></div>
+      </div>
+    </div>
+
   </div>
   <div class="save-bar" id="save-bar">
     <p>Tenés cambios sin guardar</p>
@@ -378,6 +473,7 @@
   let currentUser = null, isDirty = false
   let skillsOfrezco = [], skillsBusco = [], certs = [], availability = []
   let activeChatEmail = null, activeChatNombre = null, chatSub = null
+  let selectedStars = 0
 
   const CATEGORIAS = [
     '🍳 Cocina','🌍 Inglés','🇧🇷 Portugués','🇫🇷 Francés','🇩🇪 Alemán',
@@ -395,6 +491,8 @@
     btn.classList.add('active')
     if (tab === 'mis-matches') loadMatches()
     if (tab === 'mensajes') loadChatContacts()
+    if (tab === 'intercambios') loadIntercambios()
+    if (tab === 'resenas') loadResenas()
   }
 
   function goToChat(email, nombre) {
@@ -436,6 +534,26 @@
     }
     loadProfile()
     subscribeToMessages()
+    registrarVisita()
+  }
+
+  async function registrarVisita() {
+    const hoy = new Date().toDateString()
+    const key = 'visitas_' + currentUser.email
+    const { data } = await db.from('perfiles').select('visitas').eq('email', currentUser.email).single()
+    if (!data) return
+    const visitas = data.visitas ? JSON.parse(data.visitas) : []
+    const hoy_visitas = visitas.filter(v => new Date(v).toDateString() === hoy).length
+    const total_recientes = visitas.filter(v => {
+      const d = new Date(v)
+      const ahora = new Date()
+      return (ahora - d) < 24 * 60 * 60 * 1000
+    }).length
+    if (total_recientes > 0) {
+      const notif = document.getElementById('visit-notif')
+      notif.textContent = '👀 ' + total_recientes + ' persona' + (total_recientes > 1 ? 's vieron' : ' vio') + ' tu perfil en las últimas 24hs'
+      notif.classList.add('show')
+    }
   }
 
   function setLoginTab(tab, btn) {
@@ -502,10 +620,10 @@
     for (let opt of ciudadSel.options) { if (opt.value === data.ciudad) { opt.selected = true; break } }
     document.getElementById('display-name').textContent = (data.nombre || '') + ' ' + (data.apellido || '')
     document.getElementById('display-city').textContent = data.ciudad || '—'
-    skillsOfrezco = data.skills_ofrezco ? JSON.parse(data.skills_ofrezco) : (data.habilidad_ofrezco ? [data.habilidad_ofrezco] : [])
-    skillsBusco = data.skills_busco ? JSON.parse(data.skills_busco) : (data.habilidad_busco ? [data.habilidad_busco] : [])
-    certs = data.certificados ? JSON.parse(data.certificados) : []
-    availability = data.disponibilidad ? JSON.parse(data.disponibilidad) : []
+    if (data.cover_url) {
+      document.getElementById('cover-img').src = data.cover_url
+      document.getElementById('cover-img').style.display = ''
+    }
     if (data.foto_url) {
       document.getElementById('avatar-img').src = data.foto_url
       document.getElementById('avatar-img').style.display = ''
@@ -516,12 +634,17 @@
       document.getElementById('avatar-placeholder').style.display = ''
       document.getElementById('avatar-img').style.display = 'none'
     }
+    skillsOfrezco = data.skills_ofrezco ? JSON.parse(data.skills_ofrezco) : (data.habilidad_ofrezco ? [data.habilidad_ofrezco] : [])
+    skillsBusco = data.skills_busco ? JSON.parse(data.skills_busco) : (data.habilidad_busco ? [data.habilidad_busco] : [])
+    certs = data.certificados ? JSON.parse(data.certificados) : []
+    availability = data.disponibilidad ? JSON.parse(data.disponibilidad) : []
     document.getElementById('stat-habilidades').textContent = skillsOfrezco.length + skillsBusco.length
     renderSkills(); renderCerts(); renderAvailability(); initCatGrids()
     isDirty = false
     document.getElementById('save-bar').classList.remove('visible')
     loadMatchCount()
     loadUnreadCount()
+    loadResenaCount()
   }
 
   async function saveProfile() {
@@ -563,6 +686,11 @@
     else { badge.style.display = 'none'; }
   }
 
+  async function loadResenaCount() {
+    const { count } = await db.from('resenas').select('*', { count: 'exact', head: true }).eq('para_email', currentUser.email)
+    document.getElementById('stat-resenas').textContent = count || 0
+  }
+
   async function loadMatches() {
     const { data: yo } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
     if (!yo) return
@@ -585,8 +713,7 @@
         : '<div class="match-av">' + initials + '</div>'
       const nombre = (m.nombre || '') + ' ' + (m.apellido || '')
       return '<div class="match-card">' + avHtml +
-        '<div class="match-info">' +
-        '<div class="match-name">' + nombre + '</div>' +
+        '<div class="match-info"><div class="match-name">' + nombre + '</div>' +
         '<div class="match-city">📍 ' + (m.ciudad || '') + '</div>' +
         (m.bio ? '<div class="match-bio">' + m.bio + '</div>' : '') +
         '<div class="match-tags">' + tagsO + tagsB + '</div>' +
@@ -600,6 +727,7 @@
   async function verPerfil(email) {
     const { data: m } = await db.from('perfiles').select('*').eq('email', email).single()
     if (!m) return
+    const { data: resenas } = await db.from('resenas').select('*').eq('para_email', email).order('created_at', { ascending: false }).limit(3)
     const initials = ((m.nombre || '?')[0] + (m.apellido || '')[0]).toUpperCase()
     const avHtml = m.foto_url
       ? '<img src="' + m.foto_url + '" style="width:72px;height:72px;border-radius:50%;object-fit:cover">'
@@ -609,6 +737,11 @@
     const avail = m.disponibilidad ? JSON.parse(m.disponibilidad) : []
     const certsM = m.certificados ? JSON.parse(m.certificados) : []
     const nombre = (m.nombre || '') + ' ' + (m.apellido || '')
+    const resenasHtml = resenas && resenas.length > 0
+      ? '<div class="modal-section"><div class="modal-section-title">Reseñas</div><div class="modal-resenas">' +
+        resenas.map(r => '<div class="modal-resena"><div class="modal-resena-stars">' + '★'.repeat(r.estrellas) + '☆'.repeat(5 - r.estrellas) + '</div><div class="modal-resena-texto">' + r.texto + '</div><div class="modal-resena-autor">— ' + (r.de_nombre || r.de_email) + '</div></div>').join('') +
+        '</div></div>' : ''
+    await db.from('perfiles').update({ visitas: JSON.stringify([...(m.visitas ? JSON.parse(m.visitas) : []), new Date().toISOString()]) }).eq('email', email)
     const html =
       '<div class="modal-overlay open" id="perfil-modal" onclick="if(event.target===this)cerrarModal()">' +
       '<div class="modal-box">' +
@@ -621,6 +754,7 @@
       '<div class="modal-section"><div class="modal-section-title">Lo que busca aprender</div><div class="skills-list">' + skillsB.map(s => '<span class="skill-tag skill-tag-want">' + s + '</span>').join('') + '</div></div>' +
       (avail.length ? '<div class="modal-section"><div class="modal-section-title">Disponibilidad</div><div class="modal-avail">' + avail.map(a => '<span class="modal-avail-pill">' + a + '</span>').join('') + '</div></div>' : '') +
       (certsM.length ? '<div class="modal-section"><div class="modal-section-title">Títulos y certificados</div><div class="modal-certs">' + certsM.map(c => '<div class="modal-cert">' + c.icon + ' ' + c.name + '</div>').join('') + '</div></div>' : '') +
+      resenasHtml +
       '<div class="modal-section"><div class="modal-section-title">Contacto</div><div class="modal-links">' +
       (m.linkedin ? '<a href="' + m.linkedin + '" target="_blank" class="btn-contact btn-contact-outline">LinkedIn</a>' : '') +
       (m.instagram ? '<a href="https://instagram.com/' + m.instagram.replace('@','') + '" target="_blank" class="btn-contact btn-contact-outline">Instagram</a>' : '') +
@@ -654,49 +788,32 @@
     }
     const { data: perfiles } = await db.from('perfiles').select('*').in('email', matchEmails)
     if (!perfiles) return
-    const { data: mensajes } = await db.from('mensajes')
-      .select('*')
-      .or('de_email.eq.' + currentUser.email + ',para_email.eq.' + currentUser.email)
-      .order('created_at', { ascending: false })
+    const { data: mensajes } = await db.from('mensajes').select('*').or('de_email.eq.' + currentUser.email + ',para_email.eq.' + currentUser.email).order('created_at', { ascending: false })
     container.innerHTML = perfiles.map(p => {
       const initials = ((p.nombre || '?')[0] + (p.apellido || '')[0]).toUpperCase()
-      const ultimoMsg = mensajes ? mensajes.find(m =>
-        (m.de_email === currentUser.email && m.para_email === p.email) ||
-        (m.de_email === p.email && m.para_email === currentUser.email)
-      ) : null
+      const ultimoMsg = mensajes ? mensajes.find(m => (m.de_email === currentUser.email && m.para_email === p.email) || (m.de_email === p.email && m.para_email === currentUser.email)) : null
       const noLeidos = mensajes ? mensajes.filter(m => m.de_email === p.email && m.para_email === currentUser.email && !m.leido).length : 0
-      const avHtml = p.foto_url
-        ? '<img src="' + p.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">'
-        : '<div class="chat-av">' + initials + '</div>'
+      const avHtml = p.foto_url ? '<img src="' + p.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">' : '<div class="chat-av">' + initials + '</div>'
       const isActive = activeChatEmail === p.email ? ' active' : ''
       const nombre = (p.nombre || '') + ' ' + (p.apellido || '')
       return '<div class="chat-contact' + isActive + '" onclick="openChat(\'' + p.email + '\',\'' + nombre.trim() + '\')">' +
-        avHtml +
-        '<div class="chat-contact-info"><div class="chat-contact-name">' + nombre + '</div>' +
+        avHtml + '<div class="chat-contact-info"><div class="chat-contact-name">' + nombre + '</div>' +
         '<div class="chat-contact-preview">' + (ultimoMsg ? ultimoMsg.texto.substring(0,30) + (ultimoMsg.texto.length > 30 ? '...' : '') : 'Sin mensajes aún') + '</div></div>' +
-        (noLeidos > 0 ? '<span class="chat-unread">' + noLeidos + '</span>' : '') +
-        '</div>'
+        (noLeidos > 0 ? '<span class="chat-unread">' + noLeidos + '</span>' : '') + '</div>'
     }).join('')
   }
 
   async function openChat(email, nombre) {
-    activeChatEmail = email
-    activeChatNombre = nombre
+    activeChatEmail = email; activeChatNombre = nombre
     if (chatSub) { chatSub.unsubscribe(); chatSub = null; }
     document.querySelectorAll('.chat-contact').forEach(c => c.classList.remove('active'))
-    document.querySelectorAll('.chat-contact').forEach(c => {
-      if (c.getAttribute('onclick') && c.getAttribute('onclick').includes(email)) c.classList.add('active')
-    })
+    document.querySelectorAll('.chat-contact').forEach(c => { if (c.getAttribute('onclick') && c.getAttribute('onclick').includes(email)) c.classList.add('active') })
     const { data: perfil } = await db.from('perfiles').select('foto_url,nombre,apellido').eq('email', email).single()
     const initials = perfil ? ((perfil.nombre || '?')[0] + (perfil.apellido || '')[0]).toUpperCase() : '?'
-    const avHtml = perfil && perfil.foto_url
-      ? '<img src="' + perfil.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">'
-      : '<div class="chat-av">' + initials + '</div>'
+    const avHtml = perfil && perfil.foto_url ? '<img src="' + perfil.foto_url + '" style="width:36px;height:36px;border-radius:50%;object-fit:cover">' : '<div class="chat-av">' + initials + '</div>'
     document.getElementById('chat-main').innerHTML =
-      '<div class="chat-header">' + avHtml +
-      '<div><div class="chat-header-name">' + nombre + '</div><div class="chat-header-status">● En línea</div></div>' +
-      '<button class="chat-header-btn" onclick="verPerfil(\'' + email + '\')">👤 Ver perfil</button>' +
-      '</div>' +
+      '<div class="chat-header">' + avHtml + '<div><div class="chat-header-name">' + nombre + '</div><div class="chat-header-status">● En línea</div></div>' +
+      '<button class="chat-header-btn" onclick="verPerfil(\'' + email + '\')">👤 Ver perfil</button></div>' +
       '<div class="chat-messages" id="chat-messages"></div>' +
       '<div class="chat-input-row"><textarea class="chat-input" id="chat-input" placeholder="Escribí un mensaje..." rows="1" onkeydown="handleChatKey(event)"></textarea>' +
       '<button class="btn-send" onclick="sendMessage()"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg></button></div>'
@@ -710,20 +827,15 @@
           await db.from('mensajes').update({ leido: true }).eq('id', payload.new.id)
           loadUnreadCount(); scrollChat()
         } else { loadUnreadCount(); loadChatContacts() }
-      })
-      .subscribe()
+      }).subscribe()
   }
 
   async function loadMessages(email) {
-    const { data } = await db.from('mensajes')
-      .select('*')
+    const { data } = await db.from('mensajes').select('*')
       .or('and(de_email.eq.' + currentUser.email + ',para_email.eq.' + email + '),and(de_email.eq.' + email + ',para_email.eq.' + currentUser.email + ')')
       .order('created_at', { ascending: true })
     const container = document.getElementById('chat-messages')
-    if (!data || data.length === 0) {
-      container.innerHTML = '<div class="chat-empty"><span>👋</span><p>¡Rompé el hielo y mandá el primer mensaje!</p></div>'
-      return
-    }
+    if (!data || data.length === 0) { container.innerHTML = '<div class="chat-empty"><span>👋</span><p>¡Rompé el hielo y mandá el primer mensaje!</p></div>'; return }
     container.innerHTML = ''
     data.forEach(m => appendMessage(m, m.de_email === currentUser.email))
     scrollChat()
@@ -736,25 +848,14 @@
     if (emptyDiv) emptyDiv.remove()
     const time = new Date(msg.created_at).toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })
     const div = document.createElement('div')
-    div.style.display = 'flex'
-    div.style.flexDirection = 'column'
-    div.style.alignItems = isMine ? 'flex-end' : 'flex-start'
+    div.style.display = 'flex'; div.style.flexDirection = 'column'; div.style.alignItems = isMine ? 'flex-end' : 'flex-start'
     div.innerHTML = '<div class="msg-bubble ' + (isMine ? 'msg-out' : 'msg-in') + '">' + escapeHtml(msg.texto) + '<div class="msg-time">' + time + '</div></div>'
     container.appendChild(div)
   }
 
-  function escapeHtml(text) {
-    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')
-  }
-
-  function scrollChat() {
-    const c = document.getElementById('chat-messages')
-    if (c) c.scrollTop = c.scrollHeight
-  }
-
-  function handleChatKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  }
+  function escapeHtml(text) { return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>') }
+  function scrollChat() { const c = document.getElementById('chat-messages'); if (c) c.scrollTop = c.scrollHeight }
+  function handleChatKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage() } }
 
   async function sendMessage() {
     const input = document.getElementById('chat-input')
@@ -774,20 +875,136 @@
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'mensajes', filter: 'para_email=eq.' + currentUser.email }, () => {
         loadUnreadCount()
         if (document.getElementById('tab-mensajes').classList.contains('active')) loadChatContacts()
-      })
-      .subscribe()
+      }).subscribe()
   }
 
-  function initCatGrids() {
-    renderCatGrid('cat-grid-ofrezco', 'ofrezco')
-    renderCatGrid('cat-grid-busco', 'busco')
+  async function loadIntercambios() {
+    const { data: yo } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
+    if (!yo) return
+    const matchEmails = yo.matches_notificados ? JSON.parse(yo.matches_notificados) : []
+    const container = document.getElementById('intercambios-container')
+    if (matchEmails.length === 0) {
+      container.innerHTML = '<div class="empty-state"><div class="emoji">🔄</div><h3>No tenés intercambios activos</h3><p>Cuando acordés un intercambio con un match, va a aparecer acá.</p></div>'
+      return
+    }
+    const { data: perfiles } = await db.from('perfiles').select('*').in('email', matchEmails)
+    const { data: intercambios } = await db.from('intercambios').select('*')
+      .or('de_email.eq.' + currentUser.email + ',para_email.eq.' + currentUser.email)
+    container.innerHTML = '<div class="intercambios-list" id="intercambios-list"></div>'
+    const lista = document.getElementById('intercambios-list')
+    if (perfiles) {
+      perfiles.forEach(p => {
+        const intercambio = intercambios ? intercambios.find(i =>
+          (i.de_email === currentUser.email && i.para_email === p.email) ||
+          (i.de_email === p.email && i.para_email === currentUser.email)
+        ) : null
+        const initials = ((p.nombre || '?')[0] + (p.apellido || '')[0]).toUpperCase()
+        const avHtml = p.foto_url ? '<img src="' + p.foto_url + '" style="width:40px;height:40px;border-radius:50%;object-fit:cover">' : '<div class="intercambio-av">' + initials + '</div>'
+        const sesionesActuales = intercambio ? intercambio.sesiones_completadas : 0
+        const sesionesTotales = intercambio ? intercambio.sesiones_totales : 4
+        const completado = intercambio ? intercambio.completado : false
+        const pct = Math.round((sesionesActuales / sesionesTotales) * 100)
+        const nombre = (p.nombre || '') + ' ' + (p.apellido || '')
+        lista.innerHTML += '<div class="intercambio-card">' +
+          '<div class="intercambio-header">' + avHtml +
+          '<div class="intercambio-info"><div class="intercambio-nombre">' + nombre + '</div>' +
+          '<div class="intercambio-detalle">' + (intercambio ? intercambio.descripcion || 'Intercambio activo' : 'Sin intercambio iniciado') + '</div></div>' +
+          '<span class="intercambio-estado ' + (completado ? 'estado-completado' : 'estado-activo') + '">' + (completado ? '✓ Completado' : '● Activo') + '</span>' +
+          '</div>' +
+          (intercambio ? '<div class="sesiones-bar"><div class="sesiones-label">Sesiones: ' + sesionesActuales + ' de ' + sesionesTotales + '</div><div class="sesiones-track"><div class="sesiones-fill" style="width:' + pct + '%"></div></div></div>' : '') +
+          '<div class="intercambio-actions">' +
+          (!intercambio ? '<button class="btn-sesion btn-sesion-green" onclick="iniciarIntercambio(\'' + p.email + '\',\'' + nombre + '\')">+ Iniciar intercambio</button>' : '') +
+          (intercambio && !completado ? '<button class="btn-sesion btn-sesion-green" onclick="completarSesion(\'' + (intercambio.id) + '\')">✓ Marcar sesión completada</button>' : '') +
+          (intercambio && !completado ? '<button class="btn-sesion btn-sesion-outline" onclick="marcarCompletado(\'' + intercambio.id + '\',\'' + p.email + '\',\'' + nombre + '\')">Marcar como completado</button>' : '') +
+          '</div></div>'
+      })
+    }
   }
+
+  async function iniciarIntercambio(paraEmail, nombre) {
+    const descripcion = prompt('¿Cómo sería el intercambio? (ej: 4 clases de inglés por 2 sesiones de diseño)')
+    if (!descripcion) return
+    const sesiones = parseInt(prompt('¿Cuántas sesiones en total?', '4')) || 4
+    await db.from('intercambios').insert({ de_email: currentUser.email, para_email: paraEmail, descripcion, sesiones_totales: sesiones, sesiones_completadas: 0, completado: false })
+    loadIntercambios()
+  }
+
+  async function completarSesion(id) {
+    const { data } = await db.from('intercambios').select('sesiones_completadas,sesiones_totales').eq('id', id).single()
+    if (!data) return
+    const nueva = Math.min(data.sesiones_completadas + 1, data.sesiones_totales)
+    await db.from('intercambios').update({ sesiones_completadas: nueva }).eq('id', id)
+    loadIntercambios()
+  }
+
+  async function marcarCompletado(id, paraEmail, nombre) {
+    if (!confirm('¿Marcar este intercambio como completado?')) return
+    await db.from('intercambios').update({ completado: true }).eq('id', id)
+    loadIntercambios()
+    if (confirm('¿Querés dejarle una reseña a ' + nombre + '?')) {
+      abrirModalResena(paraEmail, nombre)
+    }
+  }
+
+  async function loadResenas() {
+    const { data } = await db.from('resenas').select('*').eq('para_email', currentUser.email).order('created_at', { ascending: false })
+    const container = document.getElementById('resenas-container')
+    const { data: yo } = await db.from('perfiles').select('matches_notificados').eq('email', currentUser.email).single()
+    const matchEmails = yo && yo.matches_notificados ? JSON.parse(yo.matches_notificados) : []
+    const pendientesHtml = matchEmails.length > 0
+      ? '<div class="dejar-resena"><h4>Dejar reseña a un match</h4>' +
+        '<select id="resena-para" style="margin-bottom:10px"><option value="">Seleccioná un match</option>' +
+        matchEmails.map(e => '<option value="' + e + '">' + e + '</option>').join('') + '</select>' +
+        '<div class="stars-select" id="stars-select">' + [1,2,3,4,5].map(n => '<button class="star-btn" onclick="setStars(' + n + ')" data-star="' + n + '">★</button>').join('') + '</div>' +
+        '<textarea id="resena-texto" placeholder="Contá cómo fue el intercambio..." style="width:100%;padding:10px;border:1.5px solid var(--border-strong);border-radius:8px;font-family:DM Sans,sans-serif;font-size:13px;outline:none;resize:vertical;min-height:70px;margin-bottom:10px"></textarea>' +
+        '<button class="btn-sesion btn-sesion-green" onclick="enviarResena()">Enviar reseña</button></div>' : ''
+    if (!data || data.length === 0) {
+      container.innerHTML = pendientesHtml + '<div class="empty-state"><div class="emoji">⭐</div><h3>Todavía no tenés reseñas</h3><p>Cuando completes intercambios, los demás van a poder dejarte una reseña.</p></div>'
+      return
+    }
+    container.innerHTML = pendientesHtml + '<div class="resenas-list">' +
+      data.map(r => '<div class="resena-card"><div class="resena-header"><div class="resena-av">' + (r.de_nombre || r.de_email || '?')[0].toUpperCase() + '</div><div class="resena-autor"><div class="resena-nombre">' + (r.de_nombre || r.de_email) + '</div><div class="resena-fecha">' + new Date(r.created_at).toLocaleDateString('es-AR') + '</div></div></div><div class="resena-stars">' + '★'.repeat(r.estrellas) + '☆'.repeat(5 - r.estrellas) + '</div><div class="resena-texto">' + r.texto + '</div></div>').join('') +
+      '</div>'
+  }
+
+  function setStars(n) {
+    selectedStars = n
+    document.querySelectorAll('.star-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.star) <= n)
+    })
+  }
+
+  async function enviarResena() {
+    const paraEmail = document.getElementById('resena-para').value
+    const texto = document.getElementById('resena-texto').value.trim()
+    if (!paraEmail) { alert('Seleccioná a quién querés reseñar.'); return }
+    if (!selectedStars) { alert('Elegí una cantidad de estrellas.'); return }
+    if (!texto) { alert('Escribí un comentario.'); return }
+    const { data: yo } = await db.from('perfiles').select('nombre,apellido').eq('email', currentUser.email).single()
+    const deNombre = yo ? (yo.nombre || '') + ' ' + (yo.apellido || '') : currentUser.email
+    await db.from('resenas').insert({ de_email: currentUser.email, de_nombre: deNombre.trim(), para_email: paraEmail, estrellas: selectedStars, texto })
+    selectedStars = 0
+    loadResenas()
+    loadResenaCount()
+    alert('¡Reseña enviada!')
+  }
+
+  function abrirModalResena(email, nombre) {
+    const btn = document.getElementById('tab-btn-resenas')
+    switchTab('resenas', btn)
+    setTimeout(() => {
+      const sel = document.getElementById('resena-para')
+      if (sel) { for (let o of sel.options) { if (o.value === email) { o.selected = true; break } } }
+    }, 200)
+  }
+
+  function initCatGrids() { renderCatGrid('cat-grid-ofrezco', 'ofrezco'); renderCatGrid('cat-grid-busco', 'busco') }
 
   function renderCatGrid(containerId, type) {
     const arr = type === 'ofrezco' ? skillsOfrezco : skillsBusco
     const selClass = type === 'ofrezco' ? 'selected-offer' : 'selected-want'
     document.getElementById(containerId).innerHTML = CATEGORIAS.map(c => {
-      const isSelected = arr.includes(c)
+      const isSelected = arr.some(s => s.startsWith(c) || s === c)
       const isDisabled = !isSelected && arr.length >= 5
       return '<div class="cat-pill ' + (isSelected ? selClass : '') + ' ' + (isDisabled ? 'disabled' : '') + '" onclick="toggleCat(\'' + type + '\',\'' + c + '\')">' + c + '</div>'
     }).join('')
@@ -795,9 +1012,10 @@
 
   function toggleCat(type, label) {
     const arr = type === 'ofrezco' ? skillsOfrezco : skillsBusco
-    if (arr.includes(label)) {
-      if (type === 'ofrezco') skillsOfrezco = skillsOfrezco.filter(s => s !== label)
-      else skillsBusco = skillsBusco.filter(s => s !== label)
+    const existing = arr.find(s => s === label || s.startsWith(label))
+    if (existing) {
+      if (type === 'ofrezco') skillsOfrezco = skillsOfrezco.filter(s => s !== existing)
+      else skillsBusco = skillsBusco.filter(s => s !== existing)
     } else {
       if (arr.length >= 5) return
       if (type === 'ofrezco') skillsOfrezco.push(label)
@@ -812,7 +1030,12 @@
     if (!val) return
     const arr = type === 'ofrezco' ? skillsOfrezco : skillsBusco
     if (arr.length >= 5) { alert('Máximo 5 habilidades por sección.'); return }
-    if (!arr.includes(val)) { arr.push(val); renderSkills(); renderCatGrid('cat-grid-' + type, type); markDirty() }
+    let skillConNivel = val
+    if (type === 'ofrezco') {
+      const nivel = document.getElementById('nivel-ofrezco').value
+      skillConNivel = val + ' (' + nivel + ')'
+    }
+    if (!arr.includes(skillConNivel)) { arr.push(skillConNivel); renderSkills(); renderCatGrid('cat-grid-' + type, type); markDirty() }
     inp.value = ''
   }
 
@@ -824,9 +1047,13 @@
 
   function renderSkills() {
     const render = (arr, id, type, cls) => {
-      document.getElementById(id).innerHTML = arr.map(s =>
-        '<span class="skill-tag ' + cls + '">' + s + '<button class="skill-remove" onclick="removeSkill(\'' + type + '\',\'' + s + '\')">×</button></span>'
-      ).join('')
+      document.getElementById(id).innerHTML = arr.map(s => {
+        const nivelMatch = s.match(/\((básico|intermedio|experto)\)$/i)
+        const nivel = nivelMatch ? nivelMatch[1] : null
+        const nivelClass = nivel === 'básico' ? 'nivel-basico' : nivel === 'intermedio' ? 'nivel-intermedio' : nivel === 'experto' ? 'nivel-experto' : ''
+        const badgeHtml = nivel ? '<span class="nivel-badge ' + nivelClass + '">' + nivel + '</span>' : ''
+        return '<span class="skill-tag ' + cls + '">' + s.replace(/\s*\((básico|intermedio|experto)\)$/i,'') + badgeHtml + '<button class="skill-remove" onclick="removeSkill(\'' + type + '\',\'' + s + '\')">×</button></span>'
+      }).join('')
     }
     render(skillsOfrezco, 'skills-ofrezco', 'ofrezco', 'skill-tag-offer')
     render(skillsBusco, 'skills-busco', 'busco', 'skill-tag-want')
@@ -849,17 +1076,14 @@
   }
 
   function toggleAvail(el) {
-    const val = el.dataset.val
-    el.classList.toggle('selected')
+    const val = el.dataset.val; el.classList.toggle('selected')
     if (availability.includes(val)) availability = availability.filter(v => v !== val)
     else availability.push(val)
     markDirty()
   }
 
   function renderAvailability() {
-    document.querySelectorAll('.avail-item').forEach(el => {
-      el.classList.toggle('selected', availability.includes(el.dataset.val))
-    })
+    document.querySelectorAll('.avail-item').forEach(el => { el.classList.toggle('selected', availability.includes(el.dataset.val)) })
   }
 
   function handleAvatar(input) {
@@ -869,6 +1093,17 @@
       document.getElementById('avatar-img').src = e.target.result
       document.getElementById('avatar-img').style.display = ''
       document.getElementById('avatar-placeholder').style.display = 'none'
+      markDirty()
+    }
+    reader.readAsDataURL(file)
+  }
+
+  function handleCover(input) {
+    const file = input.files[0]; if (!file) return
+    const reader = new FileReader()
+    reader.onload = e => {
+      document.getElementById('cover-img').src = e.target.result
+      document.getElementById('cover-img').style.display = ''
       markDirty()
     }
     reader.readAsDataURL(file)
